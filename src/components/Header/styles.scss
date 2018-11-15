@@ -4,10 +4,9 @@ header {
   @extend .toolbar;
   @extend .font-14;
 
-  img {
-    height: calc(#{$toolbarHeight} - (#{$paddingLr} * 2);
-    padding-top: $paddingLr;
-    padding-left: $paddingLr;
+  .logo {
+    margin-top: $marginLr;
+    margin-left: $marginLr;
   }
 
   nav {

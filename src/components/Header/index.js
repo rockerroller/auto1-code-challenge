@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import logo from 'images/logo.png';
+import Logo from 'components/Logo';
 import './styles.scss';
 
 class Header extends Component {
@@ -25,7 +25,7 @@ class Header extends Component {
   render() {
     return (
       <header>
-        <img src={ logo } alt="" />
+        <Logo className="logo" />
         <nav>
           <this.items />
         </nav>

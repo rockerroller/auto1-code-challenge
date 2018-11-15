@@ -3,7 +3,7 @@
 .app {
   @extend .full-size;
 
-  div.content {
+  main {
     height: calc(#{$fullHeight} - (#{$toolbarHeight}*2));
   }
 }

@@ -1,0 +1,6 @@
+@import 'stylesheets/base.scss';
+
+img.auto1-logo {
+  height: calc(#{$toolbarHeight} - (#{$paddingLr} * 2);
+}
+

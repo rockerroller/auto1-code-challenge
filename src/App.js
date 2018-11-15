@@ -12,11 +12,15 @@ class App extends Component {
       <Router history={ createBrowserHistory() }>
         <div className="app">
           <Header />
-          <div className="content">
+          <main>
             <Switch>
-              { routes.map((route, i) => <Route path={ route.path } component={ route.component } key={ i } />) }
+              {
+                routes.map((route, i) => (
+                  <Route exact={ route.exact } path={ route.path } component={ route.component } key={ i } />
+                ))
+              }
             </Switch>
-          </div>
+          </main>
           <Footer/>
         </div>
       </Router>
