@@ -4,6 +4,7 @@ $fontFamily: 'Roboto' !default;
 
 .font {
   font-family: $fontFamily;
+  color: $darkGray;
 
   &-32 {
     font-size: 32px;

@@ -15,9 +15,11 @@ header {
     float: right;
     margin-right: $marginMd;
 
-    .item {
+    a {
+      color: $darkGray;
       line-height: $toolbarHeight;
       margin: 0 $marginMd 0 $marginMd;
+      text-decoration: none;
     }
   }
 }
