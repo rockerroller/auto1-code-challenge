@@ -1,0 +1,9 @@
+@import './stylesheets/base.scss';
+
+.app {
+  @extend .full-size;
+
+  div.content {
+    height: calc(#{$fullHeight} - (#{$toolbarHeight}*2));
+  }
+}

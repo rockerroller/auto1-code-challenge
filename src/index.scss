@@ -1,7 +1,10 @@
 @import 'stylesheets/base.scss';;
 
-body {
+html,
+body,
+body div#root {
   @extend .font;
+  @extend .full-size;
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
