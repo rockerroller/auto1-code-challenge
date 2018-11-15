@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import 'stylesheets/base.scss';;
 
 body {
+  @extend .font;
   margin: 0;
   padding: 0;
-  font-family: "Roboto";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
