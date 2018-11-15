@@ -5,6 +5,7 @@ footer {
   @extend .toolbar;
   @extend .font-12;
 
+  border-top: $borderDefaults;
   line-height: $toolbarHeight;
   text-align: center;
 }

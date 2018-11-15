@@ -1,15 +1,5 @@
 @import './colors.scss';
+@import './defaults.scss';
 @import './dimensions.scss';
 @import './fonts.scss';
 @import './images.scss';
-
-.full-size {
-  height: $fullHeight;
-  width: $fullWidth;
-}
-
-.toolbar {
-  clear: both;
-  height: $toolbarHeight;
-  width: $toolbarWidth;
-}

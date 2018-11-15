@@ -2,7 +2,6 @@ import Main from 'scenes/Main';
 import Detail from 'scenes/Detail';
 import NotFound from 'scenes/NotFound';
 
-
 const routes = [{
   exact: true,
   path: '/',
