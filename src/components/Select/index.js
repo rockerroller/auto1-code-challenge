@@ -6,6 +6,10 @@ import './styles.scss';
 
 class Select extends Component {
 
+  onSelectionChanged = (evt) => {
+    this.props.onSelectionChanged(evt.target.value);
+  }
+
   items = () => {
     const { emptyLabel, emptyValue, hasEmptyOption, items } = this.props;
     const options = [];
@@ -24,7 +28,7 @@ class Select extends Component {
 
     return (
       <Container className={ classNames(className,'select-container') }>
-        <select onChange={ onSelectionChanged }>
+        <select onChange={ this.onSelectionChanged }>
           <this.items />
         </select>
       </Container>

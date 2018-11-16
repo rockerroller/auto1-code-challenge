@@ -10,23 +10,23 @@ class Filter extends Component {
 
   filters = () => Object.keys(this.props.filters).map((key, i) => {
 
-    const { label, emptyLabel, items } = this.props.filters[key];
+    const { label, emptyLabel, items, onSelectionChanged } = this.props.filters[key];
 
     return (
       <Fragment key={ i }>
         <label>{ label }</label>
-        <Select className="select" items={ items } emptyLabel={ emptyLabel }/>
+        <Select className="select" items={ items } emptyLabel={ emptyLabel } onSelectionChanged={ onSelectionChanged }/>
       </Fragment>
     )
   });
 
   render() {
-    const { className } = this.props;
+    const { className, onFilter } = this.props;
 
     return (
       <Container className={ classNames(className, 'cars-characteristics-filter') }>
         <this.filters />
-        <Button className="button" label="Filter" />
+        <Button className="button" label="Filter" onClick={ onFilter } />
       </Container>
     );
   }
@@ -41,7 +41,8 @@ Filter.propTypes = {
       value: PropTypes.string.isRequired,
     })).isRequired,
     onSelectionChanged: PropTypes.func.isRequired
-  })).isRequired
+  })).isRequired,
+  onFilter: PropTypes.func.isRequired
 };
 
 export default Filter;

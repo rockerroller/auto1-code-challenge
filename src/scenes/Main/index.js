@@ -19,6 +19,10 @@ class Main extends Component {
     }
   }
 
+  onFilter = () => {
+    alert('clicked');
+  }
+
   onColorSelectionChanged = (color) => {
     alert(color);
   }
@@ -41,11 +45,11 @@ class Main extends Component {
     this.setState({ filters });
   }
 
-  async componentWillMount() {
+  componentWillMount() {
     let { filters } = this.state;
 
     filters.color.onSelectionChanged = this.onColorSelectionChanged;
-    filters.manufacturer.onSelectionChanged = this.onColorSelectionChanged;
+    filters.manufacturer.onSelectionChanged = this.onManufacturerSelectionChanged;
 
     // load the comboboxes
     Promise.all([get('colors'), get('manufacturers')]).then(this.onLoaded);;
@@ -58,7 +62,7 @@ class Main extends Component {
 
     return (
       <main className="main">
-        <Filter className="filter" filters={ filters } />
+        <Filter className="filter" filters={ filters } onFilter={ this.onFilter }/>
       </main>
     );
   }
