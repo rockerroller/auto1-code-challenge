@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import Button from 'components/Button';
 import Container from 'components/Container';
 import Select from 'components/Select';
+import LabelledSelect from '../LabelledSelect';
 import './styles.scss';
 
 class Filter extends Component {
@@ -13,10 +14,12 @@ class Filter extends Component {
     const { label, emptyLabel, items, onSelectionChanged } = this.props.filters[key];
 
     return (
-      <Fragment key={ i }>
-        <label>{ label }</label>
-        <Select className="select" items={ items } emptyLabel={ emptyLabel } onSelectionChanged={ onSelectionChanged }/>
-      </Fragment>
+      <LabelledSelect
+        className="select"
+        emptyLabel={ emptyLabel  }
+        label={ label }
+        items={ items }
+        onSelectionChanged={ onSelectionChanged } />
     )
   });
 
