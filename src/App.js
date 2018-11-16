@@ -17,7 +17,7 @@ class App extends Component {
     return (
       <Router history={ createBrowserHistory() }>
         <div className="app">
-          { isLoading ? <div style="background-color: red">Loading</div> : null }
+          { isLoading ? <div>Loading</div> : null }
           <Header />
           <main>
             <Switch>

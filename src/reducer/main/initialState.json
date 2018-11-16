@@ -1,0 +1,10 @@
+{
+  "store": {
+    "colors": [],
+    "manufacturers": []
+  },
+  "filter": {
+    "color": null,
+    "manufacturer": null
+  }
+}
