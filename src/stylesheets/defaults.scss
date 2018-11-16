@@ -1,6 +1,8 @@
 @import './colors.scss';
 @import './dimensions.scss';
 
+$borderDefaults: $borderWidth solid $lightGray;
+
 .full-size {
   height: $fullHeight;
   width: $fullWidth;
@@ -12,4 +14,8 @@
   width: $toolbarWidth;
 }
 
-$borderDefaults: $borderWidth solid $lightGray;
+.default-border {
+  border: $borderDefaults;
+  border-radius: $borderRadius;
+}
+
