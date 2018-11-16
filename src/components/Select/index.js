@@ -46,7 +46,8 @@ Select.propTypes = {
 Select.defaultProps = {
   emptyLabel: 'Empty',
   emptyValue: '',
-  hasEmptyOption: true
+  hasEmptyOption: true,
+  items: []
 };
 
 export default Select;

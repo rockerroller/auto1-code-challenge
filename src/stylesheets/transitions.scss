@@ -1,0 +1,10 @@
+
+$transitionTime: 500ms;
+
+.ease-out-transition {
+  transition: all $transitionTime ease-out;
+}
+
+.ease-in-transition {
+  transition: all $transitionTime ease-in;
+}
