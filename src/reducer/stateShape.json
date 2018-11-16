@@ -1,0 +1,11 @@
+{
+  "filter": {
+    "color": null,
+    "manufacturer": null
+  },
+  "order": "asc",
+  "store": {
+    "colors": [],
+    "manufacturers": []
+  }
+}
