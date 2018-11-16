@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import Filter from './components/Filter';
+import { get } from 'utils/request';
 import './styles.scss';
 
 class Main extends Component {
@@ -26,10 +27,29 @@ class Main extends Component {
     alert(manufacturer);
   }
 
-  componentWillMount() {
+  onLoaded = ([colorsData, manufacturersData]) => {
     let { filters } = this.state;
+    const handleColors = () => colorsData.colors.map((name) => ({ label: name, value:name  }));
+    const handleManufacturers = () => manufacturersData.manufacturers.map(({ name }) => ({
+      label: name,
+      value: name
+    }));
+
+    filters.color.items = handleColors();
+    filters.manufacturer.items = handleManufacturers();
+
+    this.setState({ filters });
+  }
+
+  async componentWillMount() {
+    let { filters } = this.state;
+
     filters.color.onSelectionChanged = this.onColorSelectionChanged;
     filters.manufacturer.onSelectionChanged = this.onColorSelectionChanged;
+
+    // load the comboboxes
+    Promise.all([get('colors'), get('manufacturers')]).then(this.onLoaded);;
+
     this.setState({ filters });
   }
 

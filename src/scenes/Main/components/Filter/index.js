@@ -21,13 +21,8 @@ class Filter extends Component {
   });
 
   render() {
-
-    const items = [ {
-      label: 'foi',
-      value: 'teste'
-    } ]
-
     const { className } = this.props;
+
     return (
       <Container className={ classNames(className, 'cars-characteristics-filter') }>
         <this.filters />
