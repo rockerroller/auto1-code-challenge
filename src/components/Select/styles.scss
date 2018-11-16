@@ -33,6 +33,7 @@ $selectArrowSize: $selectArrowWidth $selectArrowHeight;
   background-position: $selectArrowPosition1, $selectArrowPosition2;
   background-size: $selectArrowSize;
   background-repeat: no-repeat;
+  color: $defaultColor;
   padding: $paddingSm $paddingMd;
   width: $fullWidth;
 }

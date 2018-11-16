@@ -1,7 +1,8 @@
 @import './colors.scss';
 @import './dimensions.scss';
 
-$borderDefaults: $borderWidth solid $lightGray;
+$defaultBorder: $borderWidth solid $lightGray;
+$defaultColor: $darkGray;
 
 .full-size {
   height: $fullHeight;
@@ -15,7 +16,7 @@ $borderDefaults: $borderWidth solid $lightGray;
 }
 
 .default-border {
-  border: $borderDefaults;
+  border: $defaultBorder;
   border-radius: $borderRadius;
 }
 

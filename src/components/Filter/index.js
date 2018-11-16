@@ -5,6 +5,7 @@ import Select from 'components/Select';
 import './styles.scss';
 
 class Filter extends Component {
+
   render() {
 
     const items = [ {
@@ -16,8 +17,11 @@ class Filter extends Component {
 
     const { className } = this.props;
     return (
-      <Container className={ classNames(className, 'filter') }>
-        <Select items={ items }/>
+      <Container className={ classNames(className, 'cars-characteristics-filter') }>
+        <label>Color</label>
+        <Select className="select" items={ items } emptyLabel="All car colors"/>
+        <label>Manufacturer</label>
+        <Select className="select" items={ items } emptyLabel="All manufacturers"/>
       </Container>
     );
   }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import Container from 'components/Container';
 import './styles.scss';
 
@@ -19,10 +20,10 @@ class Select extends Component {
   }
 
   render() {
-    const { onSelectionChanged } = this.props;
+    const { className, onSelectionChanged } = this.props;
 
     return (
-      <Container className="select-container">
+      <Container className={ classNames(className,'select-container') }>
         <select onChange={ onSelectionChanged }>
           <this.items />
         </select>

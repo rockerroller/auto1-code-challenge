@@ -3,6 +3,8 @@
 .app {
   @extend .full-size;
 
+  color: $defaultColor;
+
   main {
     height: calc(#{$fullHeight} - (#{$toolbarHeight}*2));
   }

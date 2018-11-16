@@ -4,7 +4,7 @@ header {
   @extend .toolbar;
   @extend .font-14;
 
-  border-bottom: $borderDefaults;
+  border-bottom: $defaultBorder;
 
   .logo {
     margin-top: $marginLr;
