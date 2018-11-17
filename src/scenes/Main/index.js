@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import classNames from 'classnames';
+import LabelledSelect from 'components/LabelledSelect';
 import Filter from './components/Filter';
+import List from './components/List';
 import { get } from 'utils/request';
 import actions from 'actions';
 import './styles.scss';
@@ -25,19 +26,21 @@ const mapDispatchToProps = (dispatch) => ({
 class Main extends Component {
 
   prepareFilters() {
-    const { colors, manufacturers } = this.props.store;
-    const handleColors = () => colors.map((name) => ({ label: name, value:name }));
-    const handleManufa = () => manufacturers.map(({ name }) => ({ label: name, value: name }));
+    const { filter, store } = this.props;
+    const handleColors = () => store.colors.map((name) => ({ label: name, value:name }));
+    const handleManufa = () => store.manufacturers.map(({ name }) => ({ label: name, value: name }));
 
     return {
       color: {
         label: 'Color',
+        value: filter.color,
         emptyLabel: 'All car colors',
         items: handleColors(),
         onSelectionChanged: this.onColorSelectionChanged
       },
       manufacturer: {
         label: 'Manufacturer',
+        value: filter.manufacturer,
         emptyLabel: 'All manufacturers',
         items: handleManufa(),
         onSelectionChanged: this.onManufacturerSelectionChanged
@@ -55,6 +58,10 @@ class Main extends Component {
 
   onManufacturerSelectionChanged = (manufacturer) => {
     this.props.setFilterManufacturer(manufacturer);
+  }
+
+  onOrderSelectionChanged = (order) => {
+    // TODO: implement
   }
 
   onLoaded = ([{ colors }, { manufacturers }]) => {
@@ -75,11 +82,35 @@ class Main extends Component {
   }
 
   render() {
-
     const filters = this.prepareFilters();
+    const sortByItems = [{
+      label: 'Mileage - Ascending',
+      value: 'asc'
+    }, {
+      label: 'Mileage - Descending',
+      value: 'des'
+    }];
+
     return (
       <main className="main">
-        <Filter className="filter" filters={ filters } onFilter={ this.onFilter }/>
+        <nav className="sidebar">
+          <Filter filters={ filters } onFilter={ this.onFilter }/>
+        </nav>
+        <div className="content">
+          <div className="header">
+            <article className="title">
+              <div>Available cars</div>
+              <div>Showing results x of x</div>
+            </article>
+            <LabelledSelect
+              className="order"
+              emptyLabel="None"
+              label="Sort by"
+              items={ sortByItems }
+              onSelectionChanged={ this.onOrderSelectionChanged }/>
+          </div>
+          <List className="list"/>
+        </div>
       </main>
     );
   }

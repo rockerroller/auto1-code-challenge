@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import classNames from 'classnames';
-import styles from './styles.scss';
+import './styles.scss';
 
 const Container = ({ children, className }) => (
   <div className={ classNames(className, 'default-container') }>

@@ -18,17 +18,19 @@ class Select extends Component {
       options.push(<option value={ emptyValue }>{ emptyLabel }</option>);
     }
 
-    items.forEach(({ label, value }) => options.push(<option value={ value }>{ label }</option>));
+    items.forEach((item) => options.push(
+      <option value={ item.value }>{ item.label }</option>
+    ));
 
     return options;
   }
 
   render() {
-    const { className, onSelectionChanged } = this.props;
+    const { className, value } = this.props;
 
     return (
       <Container className={ classNames(className,'select-container') }>
-        <select onChange={ this.onSelectionChanged }>
+        <select onChange={ this.onSelectionChanged } defaultValue={ value }>
           <this.items />
         </select>
       </Container>
@@ -44,14 +46,16 @@ Select.propTypes = {
     label: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
   })).isRequired,
-  onSelectionChanged: PropTypes.function
+  onSelectionChanged: PropTypes.function,
+  value: PropTypes.string
 };
 
 Select.defaultProps = {
   emptyLabel: 'Empty',
   emptyValue: '',
   hasEmptyOption: true,
-  items: []
+  items: [],
+  value: ''
 };
 
 export default Select;

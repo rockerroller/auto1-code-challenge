@@ -1,25 +1,24 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Button from 'components/Button';
 import Container from 'components/Container';
-import Select from 'components/Select';
-import LabelledSelect from '../LabelledSelect';
+import LabelledSelect from 'components/LabelledSelect';
 import './styles.scss';
 
 class Filter extends Component {
 
   filters = () => Object.keys(this.props.filters).map((key, i) => {
 
-    const { label, emptyLabel, items, onSelectionChanged } = this.props.filters[key];
+    const { label, emptyLabel, items, onSelectionChanged, value } = this.props.filters[key];
 
     return (
       <LabelledSelect
-        className="select"
         emptyLabel={ emptyLabel  }
         label={ label }
         items={ items }
-        onSelectionChanged={ onSelectionChanged } />
+        onSelectionChanged={ onSelectionChanged }
+        value={ value }/>
     )
   });
 
@@ -43,7 +42,8 @@ Filter.propTypes = {
       label: PropTypes.string.isRequired,
       value: PropTypes.string.isRequired,
     })).isRequired,
-    onSelectionChanged: PropTypes.func.isRequired
+    onSelectionChanged: PropTypes.func.isRequired,
+    value: PropTypes.string
   })).isRequired,
   onFilter: PropTypes.func.isRequired
 };

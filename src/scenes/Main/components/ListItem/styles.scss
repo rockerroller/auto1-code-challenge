@@ -1,0 +1,37 @@
+@import 'stylesheets/base.scss';
+
+.car-list-item {
+  padding: $paddingMd;
+
+  img {
+    display: inline-block;
+    height: 60px;
+  }
+
+  .info {
+    display: inline-block;
+    margin-left: $marginLr;
+
+    .name {
+      @extend .font-18-bold;
+    }
+    .stock {
+      @extend .font-12;
+      margin-top: $marginSm;
+    }
+    a {
+      @extend .font-12;
+      @extend .ease-out-transition;
+
+      margin-top: $marginSm;
+      color: $orange;
+      display: block;
+      text-decoration: none;
+
+      &:hover {
+        color: $darkOrange;
+        text-decoration: underline;
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+@import 'stylesheets/base.scss';
+
+.car-list {
+  margin-top: $marginSm;
+  margin: $marginSm $paddingLr;
+  width: calc(#{$fullWidth} - (#{$paddingLr}*2 ));
+}

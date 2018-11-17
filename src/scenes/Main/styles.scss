@@ -2,7 +2,35 @@
 
 .main {
 
-  .filter {
-    width: 300px;
+  display: flex;
+  padding-left: $paddingLr;
+  padding-top: $paddingLr;
+
+  .sidebar {
+    flex: 30%;
+    width: $defaultNavWidth;
+  }
+
+  .content {
+    flex: 70%;
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      margin: 0 $marginLr;
+    }
+
+    .title div {
+      @extend .font-18;
+
+      margin-bottom: $marginMd;
+      &:first-child {
+        @extend .font-18-bold;
+      }
+    }
+
+    .order {
+      width: calc(#{$defaultNavWidth} - (#{$paddingLr}*2 ));
+    }
   }
 }

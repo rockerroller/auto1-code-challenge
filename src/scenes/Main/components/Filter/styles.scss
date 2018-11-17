@@ -1,19 +1,9 @@
 @import 'stylesheets/base.scss';
 
 .cars-characteristics-filter {
-  margin: $marginLr 0 0 $marginLr;
+  display: inline-block;
   padding: $paddingLr;
-}
-
-.cars-characteristics-filter label {
-  @extend .font-12;
-
-  display: block;
-  padding-bottom: $paddingSm;
-}
-
-.cars-characteristics-filter .select {
-  margin-bottom: $marginMd;
+  width: calc(#{$fullWidth} - (#{$paddingLr}*2 ));
 }
 
 .cars-characteristics-filter .button{
