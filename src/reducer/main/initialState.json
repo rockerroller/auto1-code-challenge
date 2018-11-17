@@ -6,5 +6,6 @@
   },
   "sort": null,
   "page": 1,
-  "cars": []
+  "cars": [],
+  "totalPageCount": 0
 }

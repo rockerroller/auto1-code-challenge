@@ -18,8 +18,8 @@ class Header extends Component {
     }]
   }
 
-  items = () => this.state.items.map(({ title, path }) =>
-    <Link to={ path }>{ title }</Link>
+  items = () => this.state.items.map(({ title, path }, i) =>
+    <Link key={ i } to={ path }>{ title }</Link>
   );
 
   render() {

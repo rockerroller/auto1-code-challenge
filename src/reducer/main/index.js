@@ -5,7 +5,8 @@ import {
   SET_FILTER_MANUFACTURER,
   SET_SORT_ORDER_BY_MILEAGE,
   SET_PAGE,
-  SET_CARS
+  SET_CARS,
+  SET_TOTAL_PAGE_COUNT
 } from 'actions/main';
 
 export default function app(state = initialState, action) {
@@ -25,6 +26,9 @@ export default function app(state = initialState, action) {
       return newState;
     case SET_CARS:
       newState.cars = action.value;
+      return newState;
+    case SET_TOTAL_PAGE_COUNT:
+      newState.totalPageCount = action.value;
       return newState;
     default: return state;
   }

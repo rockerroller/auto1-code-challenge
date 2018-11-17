@@ -35,7 +35,7 @@ class Filter extends Component {
 }
 
 Filter.propTypes = {
-  filters: PropTypes.arrayOf(PropTypes.shape({
+  filters: PropTypes.objectOf(PropTypes.shape({
     emptyLabel: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
     items: PropTypes.arrayOf(PropTypes.shape({

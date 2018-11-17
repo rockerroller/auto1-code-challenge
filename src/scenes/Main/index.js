@@ -3,15 +3,14 @@ import { connect } from 'react-redux';
 import LabelledSelect from 'components/LabelledSelect';
 import Filter from './components/Filter';
 import List from './components/List';
+import ListHeader from './components/ListHeader';
 import { get } from 'utils/request';
 import actions from 'actions';
 import './styles.scss';
 
 const mapStateToProps = ({ main, store }) => ({
   store,
-  sort: main.sort,
-  page: main.page,
-  cars: main.cars
+  sort: main.sort
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -21,7 +20,7 @@ const mapDispatchToProps = (dispatch) => ({
   setFilterManufacturer: (manufacturer) => dispatch(actions.main.setFilterManufacturer(manufacturer)),
   setSortOrderByMileage: (sort) => dispatch(actions.main.setSortOrderByMileage(sort)),
   setPage: (page) => dispatch(actions.main.setPage(page)),
-  fetchCars: (params) => dispatch(actions.main.fetchCars(params)),
+  fetchCars: () => dispatch(actions.main.fetchCars()),
   storeData: (colors, manufacturers) => {
     dispatch(actions.store.storeColors(colors));
     dispatch(actions.store.storeManufacturers(manufacturers));
@@ -82,7 +81,7 @@ class Main extends Component {
   }
 
   render() {
-    const { cars, sort } = this.props;
+    const { sort } = this.props;
     const filters = this.prepareFilters();
     const sortByItems = [{
       label: 'Mileage - Ascending',
@@ -98,20 +97,8 @@ class Main extends Component {
           <Filter filters={ filters } onFilter={ this.onFilter }/>
         </nav>
         <div className="content">
-          <div className="header">
-            <article className="title">
-              <div>Available cars</div>
-              <div>Showing results x of x</div>
-            </article>
-            <LabelledSelect
-              className="order"
-              emptyLabel="None"
-              label="Sort by"
-              items={ sortByItems }
-              onSelectionChanged={ this.onOrderSelectionChanged }
-              value={ sort } />
-          </div>
-          <List className="list" cars={ cars }/>
+          <ListHeader />
+          <List className="list"/>
         </div>
       </main>
     );

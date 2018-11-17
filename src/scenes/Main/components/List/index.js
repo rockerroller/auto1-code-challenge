@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import classNames from 'classnames';
 import Button from 'components/Button';
 import Container from 'components/Container';
 import ListItem from '../ListItem';
 import './styles.scss';
 
+const mapStateToProps = ({ main }) => ({
+  isLoading: main.isFetching,
+  cars: main.cars
+});
+
 class List extends Component {
 
   cars = () => this.props.cars.map((car, i) => (
-    <ListItem key={ i } item={ car }/>
+    <ListItem key={ i } item={ car } isLoading={ this.props.isLoading }/>
   ));
 
   render() {
@@ -44,4 +50,4 @@ List.defaultProps = {
   isLoading: false,
 };
 
-export default List;
+export default connect(mapStateToProps)(List);

@@ -28,7 +28,7 @@ class ListItem extends Component {
     return (
       <Container className="car-list-item">
         <img src={ pictureUrl }/>
-        <div class="info">
+        <div className="info">
           <div className="name">{ name }</div>
           <div className="stock">{ stock  }</div>
           <Link to={ `detail/${stockNumber}` }>View details</Link>

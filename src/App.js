@@ -23,7 +23,7 @@ class App extends Component {
             <Switch>
               {
                 routes.map((route, i) => (
-                  <Route exact={ route.exact } path={ route.path } component={ route.component } key={ i } />
+                  <Route key={ i } exact={ route.exact } path={ route.path } component={ route.component } />
                 ))
               }
             </Switch>

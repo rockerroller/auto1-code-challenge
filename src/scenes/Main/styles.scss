@@ -13,24 +13,5 @@
 
   .content {
     flex: 70%;
-
-    .header {
-      display: flex;
-      justify-content: space-between;
-      margin: 0 $marginLr;
-    }
-
-    .title div {
-      @extend .font-18;
-
-      margin-bottom: $marginMd;
-      &:first-child {
-        @extend .font-18-bold;
-      }
-    }
-
-    .order {
-      width: calc(#{$defaultNavWidth} - (#{$paddingLr}*2 ));
-    }
   }
 }

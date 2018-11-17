@@ -4,6 +4,7 @@ export const SET_FILTER_MANUFACTURER = 'SET_FILTER_MANUFACTURER';
 export const SET_SORT_ORDER_BY_MILEAGE = 'SET_SORT_ORDER_BY_MILEAGE';
 export const SET_PAGE = 'SET_PAGE';
 export const SET_CARS = 'SET_CARS';
+export const SET_TOTAL_PAGE_COUNT = 'SET_TOTAL_PAGE_COUNT';
 
 export const setFilterColor = (value) => ({
   type: SET_FILTER_COLOR,
@@ -30,6 +31,11 @@ export const setCars = (value) => ({
   value
 });
 
+export const setTotalPageCount = (value) => ({
+  type: SET_TOTAL_PAGE_COUNT,
+  value
+});
+
 export function fetchCars() {
   return async (dispatch, getState) => {
     const state= getState();
@@ -40,7 +46,8 @@ export function fetchCars() {
       sort,
       page
     };
-    const { cars } = await get('cars', params);
-    dispatch(setCars(cars));
+    const result = await get('cars', params);
+    dispatch(setCars(result.cars));
+    dispatch(setTotalPageCount(result.totalPageCount));
   }
 }
