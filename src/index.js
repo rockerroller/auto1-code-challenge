@@ -14,7 +14,7 @@ import * as serviceWorker from './serviceWorker';
 const persistConfig = {
   key: 'auto1:code-challenge',
   storage: storage,
-  blacklist: ['app', 'main.filter', 'main.page', 'main.sort']
+  blacklist: ['app', 'main']
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

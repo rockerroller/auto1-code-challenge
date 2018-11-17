@@ -7,9 +7,11 @@ import { get } from 'utils/request';
 import actions from 'actions';
 import './styles.scss';
 
-const mapStateToProps = ({ main }) => ({
-  store: main.store,
-  filter: main.filter
+const mapStateToProps = ({ main, store }) => ({
+  store,
+  sort: main.sort,
+  page: main.page,
+  cars: main.cars
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -17,51 +19,47 @@ const mapDispatchToProps = (dispatch) => ({
   ready: () => dispatch(actions.app.ready()),
   setFilterColor: (color) => dispatch(actions.main.setFilterColor(color)),
   setFilterManufacturer: (manufacturer) => dispatch(actions.main.setFilterManufacturer(manufacturer)),
+  setSortOrderByMileage: (sort) => dispatch(actions.main.setSortOrderByMileage(sort)),
+  setPage: (page) => dispatch(actions.main.setPage(page)),
+  fetchCars: (params) => dispatch(actions.main.fetchCars(params)),
   storeData: (colors, manufacturers) => {
-    dispatch(actions.main.storeColors(colors));
-    dispatch(actions.main.storeManufacturers(manufacturers));
+    dispatch(actions.store.storeColors(colors));
+    dispatch(actions.store.storeManufacturers(manufacturers));
   }
 });
 
 class Main extends Component {
 
   prepareFilters() {
-    const { filter, store } = this.props;
+    const { store } = this.props;
     const handleColors = () => store.colors.map((name) => ({ label: name, value:name }));
-    const handleManufa = () => store.manufacturers.map(({ name }) => ({ label: name, value: name }));
+    const handleManufacturers = () => store.manufacturers.map(({ name }) => ({ label: name, value: name }));
 
     return {
       color: {
         label: 'Color',
-        value: filter.color,
         emptyLabel: 'All car colors',
         items: handleColors(),
         onSelectionChanged: this.onColorSelectionChanged
       },
       manufacturer: {
         label: 'Manufacturer',
-        value: filter.manufacturer,
         emptyLabel: 'All manufacturers',
-        items: handleManufa(),
+        items: handleManufacturers(),
         onSelectionChanged: this.onManufacturerSelectionChanged
       }
     }
   }
 
-  onFilter = () => {
-    alert('clicked');
-  }
+  onFilter = () => this.props.fetchCars();
 
-  onColorSelectionChanged = (color) => {
-    this.props.setFilterColor(color);
-  }
+  onColorSelectionChanged = (color) => this.props.setFilterColor(color);
 
-  onManufacturerSelectionChanged = (manufacturer) => {
-    this.props.setFilterManufacturer(manufacturer);
-  }
+  onManufacturerSelectionChanged = (manufacturer) =>  this.props.setFilterManufacturer(manufacturer);
 
   onOrderSelectionChanged = (order) => {
-    // TODO: implement
+    this.props.setSortOrderByMileage(order);
+    this.props.fetchCars();
   }
 
   onLoaded = ([{ colors }, { manufacturers }]) => {
@@ -79,9 +77,12 @@ class Main extends Component {
       Promise.all([get('colors'), get('manufacturers')]).then(this.onLoaded);
       loading();
     }
+
+    this.props.fetchCars();
   }
 
   render() {
+    const { sort } = this.props;
     const filters = this.prepareFilters();
     const sortByItems = [{
       label: 'Mileage - Ascending',
@@ -107,7 +108,8 @@ class Main extends Component {
               emptyLabel="None"
               label="Sort by"
               items={ sortByItems }
-              onSelectionChanged={ this.onOrderSelectionChanged }/>
+              onSelectionChanged={ this.onOrderSelectionChanged }
+              value={ sort } />
           </div>
           <List className="list"/>
         </div>

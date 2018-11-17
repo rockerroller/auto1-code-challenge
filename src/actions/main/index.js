@@ -1,19 +1,9 @@
-export const STORE_COLORS = 'STORE_COLORS';
-export const STORE_MANUFACTURERS = 'STORE_MANUFACTURERS';
+import { get } from 'utils/request';
 export const SET_FILTER_COLOR = 'SET_FILTER_COLOR';
 export const SET_FILTER_MANUFACTURER = 'SET_FILTER_MANUFACTURER';
 export const SET_SORT_ORDER_BY_MILEAGE = 'SET_SORT_ORDER_BY_MILEAGE';
 export const SET_PAGE = 'SET_PAGE';
-
-export const storeColors = (value) => ({
-  type: STORE_COLORS,
-  value
-});
-
-export const storeManufacturers = (value) => ({
-  type: STORE_MANUFACTURERS,
-  value
-});
+export const SET_CARS = 'SET_CARS';
 
 export const setFilterColor = (value) => ({
   type: SET_FILTER_COLOR,
@@ -34,3 +24,23 @@ export const setPage = (value) => ({
   type: SET_PAGE,
   value
 });
+
+export const setCars = (value) => ({
+  type: SET_CARS,
+  value
+});
+
+export function fetchCars() {
+  return async (dispatch, getState) => {
+    const state= getState();
+    const { filter, sort, page } = state.main;
+    const params = {
+      manufacturer: filter.manufacturer,
+      color: filter.color,
+      sort,
+      page
+    };
+    const cars = await get('cars', params);
+    dispatch(setCars(cars));
+  }
+}

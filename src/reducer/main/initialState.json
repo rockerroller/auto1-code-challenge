@@ -1,12 +1,10 @@
 {
-  "store": {
-    "colors": [],
-    "manufacturers": []
-  },
+  "isFetching": false,
   "filter": {
     "color": null,
     "manufacturer": null
   },
-  "sort": "asc",
-  "page": 1
+  "sort": null,
+  "page": 1,
+  "cars": []
 }
