@@ -1,6 +1,8 @@
 @import 'stylesheets/base.scss';
 
 .car-list-item {
+  display: flex;
+  flex-direction: row;
   padding: $paddingMd;
   margin-bottom: $marginMd;
 
@@ -8,17 +10,49 @@
     margin-bottom: 0;
   }
 
-  img {
-    display: inline-block;
+  &.loading {
+    .picture {
+      background-color: $lightGray;
+    }
+
+    .loading-labels-before {
+      color: $lightGray;
+      display: inline-block;
+      background-color: $lightGray;
+    }
+
+    .name::before,
+    .stock::before {
+      @extend .loading-labels-before;
+
+      content: 'empty';
+      width: 60%;
+    }
+
+    a::before {
+      @extend .loading-labels-before;
+
+      content: 'View details';
+    }
+  }
+
+  .picture {
+    @extend .default-flex-dock;
+
+    border: 0;
     height: 60px;
+    width: 71.5px;
   }
 
   .info {
+    @extend .default-flex-dynamic;
+
     display: inline-block;
     margin-left: $marginLr;
 
     .name {
       @extend .font-18-bold;
+      width: $fullWidth;
     }
     .stock {
       @extend .font-12;

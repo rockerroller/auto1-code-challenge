@@ -42,14 +42,15 @@ class ListHeader extends Component {
   }
 
   render() {
-    const { cars, sort, totalPageCount } = this.props;
+    const { sort, totalPageCount } = this.props;
     const currentQuantity = this.calcCurrQtt();
+    const totalPages = totalPageCount === 1 ? currentQuantity : totalPageCount * 10;
 
     return (
       <div className="car-list-header">
         <article className="title">
           <div>Available cars</div>
-          <div>Showing { currentQuantity } of { totalPageCount * cars.length } results</div>
+          <div>Showing { currentQuantity } of { totalPages } results</div>
         </article>
         <LabelledSelect
           className="order"

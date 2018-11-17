@@ -11,9 +11,17 @@ const mapStateToProps = ({ main }) => ({
 
 class List extends Component {
 
-  cars = () => this.props.cars.map((car, i) => (
-    <ListItem key={ i } item={ car } isLoading={ this.props.isLoading }/>
-  ));
+  cars = () => {
+    const { cars, isLoading } = this.props;
+    if (isLoading) {
+      return [0, 1, 2].map((i) => (
+        <ListItem key={ i } isLoading={ true }/>
+      ));
+    }
+    return cars.map((car, i) => (
+      <ListItem key={ i } item={ car }/>
+    ));
+  }
 
   render() {
     const { className } = this.props;
@@ -27,8 +35,7 @@ class List extends Component {
 }
 
 List.defaultProps = {
-  cars: [],
-  isLoading: false,
+  cars: []
 };
 
 export default connect(mapStateToProps)(List);

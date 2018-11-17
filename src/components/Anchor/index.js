@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import './styles.scss';
 
@@ -11,4 +12,9 @@ const Anchor = ({ className, children, onClick, href }) => (
   </a>
 );
 
+Anchor.propTypes = {
+  className: PropTypes.string,
+  href: PropTypes.string,
+  onClick: PropTypes.func
+};
 export default Anchor;

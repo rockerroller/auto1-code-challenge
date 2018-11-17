@@ -51,7 +51,7 @@ class ListPaginate extends Component {
   }
 
   render() {
-    const { cars, page, totalPageCount } = this.props;
+    const { page, totalPageCount } = this.props;
 
     return (
       <div className="car-list-paginate">
