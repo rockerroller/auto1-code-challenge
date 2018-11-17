@@ -29,38 +29,6 @@ const mapDispatchToProps = (dispatch) => ({
 
 class Main extends Component {
 
-  prepareFilters() {
-    const { store } = this.props;
-    const handleColors = () => store.colors.map((name) => ({ label: name, value:name }));
-    const handleManufacturers = () => store.manufacturers.map(({ name }) => ({ label: name, value: name }));
-
-    return {
-      color: {
-        label: 'Color',
-        emptyLabel: 'All car colors',
-        items: handleColors(),
-        onSelectionChanged: this.onColorSelectionChanged
-      },
-      manufacturer: {
-        label: 'Manufacturer',
-        emptyLabel: 'All manufacturers',
-        items: handleManufacturers(),
-        onSelectionChanged: this.onManufacturerSelectionChanged
-      }
-    }
-  }
-
-  onFilter = () => this.props.fetchCars();
-
-  onColorSelectionChanged = (color) => this.props.setFilterColor(color);
-
-  onManufacturerSelectionChanged = (manufacturer) =>  this.props.setFilterManufacturer(manufacturer);
-
-  onOrderSelectionChanged = (order) => {
-    this.props.setSortOrderByMileage(order);
-    this.props.fetchCars();
-  }
-
   onLoaded = ([{ colors }, { manufacturers }]) => {
     const { ready, storeData } = this.props;
     storeData(colors, manufacturers);
@@ -81,24 +49,15 @@ class Main extends Component {
   }
 
   render() {
-    const { sort } = this.props;
-    const filters = this.prepareFilters();
-    const sortByItems = [{
-      label: 'Mileage - Ascending',
-      value: 'asc'
-    }, {
-      label: 'Mileage - Descending',
-      value: 'des'
-    }];
 
     return (
       <main className="main">
         <nav className="sidebar">
-          <Filter filters={ filters } onFilter={ this.onFilter }/>
+          <Filter />
         </nav>
         <div className="content">
           <ListHeader />
-          <List className="list"/>
+          <List className="list" />
         </div>
       </main>
     );

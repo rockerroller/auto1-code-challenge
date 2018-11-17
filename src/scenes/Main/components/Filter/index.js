@@ -1,19 +1,57 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import classNames from 'classnames';
 import Button from 'components/Button';
 import Container from 'components/Container';
 import LabelledSelect from 'components/LabelledSelect';
+import actions from 'actions';
 import './styles.scss';
+
+const mapStateToProps = ({ main, store }) => ({
+  store
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setFilterColor: (color) => dispatch(actions.main.setFilterColor(color)),
+  setFilterManufacturer: (manufacturer) => dispatch(actions.main.setFilterManufacturer(manufacturer)),
+  fetchCars: () => dispatch(actions.main.fetchCars())
+});
 
 class Filter extends Component {
 
-  filters = () => Object.keys(this.props.filters).map((key, i) => {
+  prepareFilters() {
+    const { store } = this.props;
+    const handleColors = () => store.colors.map((name) => ({ label: name, value:name }));
+    const handleManufacturers = () => store.manufacturers.map(({ name }) => ({ label: name, value: name }));
 
-    const { label, emptyLabel, items, onSelectionChanged, value } = this.props.filters[key];
+    return [
+      {
+        label: 'Color',
+        emptyLabel: 'All car colors',
+        items: handleColors(),
+        onSelectionChanged: this.onColorSelectionChanged
+      }, {
+        label: 'Manufacturer',
+        emptyLabel: 'All manufacturers',
+        items: handleManufacturers(),
+        onSelectionChanged: this.onManufacturerSelectionChanged
+      }
+    ]
+  }
+
+  onFilter = () => this.props.fetchCars();
+
+  onColorSelectionChanged = (color) => this.props.setFilterColor(color);
+
+  onManufacturerSelectionChanged = (manufacturer) =>  this.props.setFilterManufacturer(manufacturer);
+
+  filters = () => this.prepareFilters().map((filter, i) => {
+
+    const { label, emptyLabel, items, onSelectionChanged, value } = filter;
 
     return (
       <LabelledSelect
+        key={ i }
         emptyLabel={ emptyLabel  }
         label={ label }
         items={ items }
@@ -24,28 +62,15 @@ class Filter extends Component {
 
   render() {
     const { className, onFilter } = this.props;
+    const filters = this.prepareFilters();
 
     return (
       <Container className={ classNames(className, 'cars-characteristics-filter') }>
         <this.filters />
-        <Button className="button" label="Filter" onClick={ onFilter } />
+        <Button className="button" label="Filter" onClick={ this.onFilter } />
       </Container>
     );
   }
 }
 
-Filter.propTypes = {
-  filters: PropTypes.objectOf(PropTypes.shape({
-    emptyLabel: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
-    items: PropTypes.arrayOf(PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      value: PropTypes.string.isRequired,
-    })).isRequired,
-    onSelectionChanged: PropTypes.func.isRequired,
-    value: PropTypes.string
-  })).isRequired,
-  onFilter: PropTypes.func.isRequired
-};
-
-export default Filter;
+export default connect(mapStateToProps, mapDispatchToProps)(Filter);

@@ -33,22 +33,23 @@ class ListHeader extends Component {
 
   calcCurrQtt = () => {
     const { cars, page, totalPageCount } = this.props;
-    let qtt = page * cars.length;
-    if (qtt > totalPageCount) {
-      qtt = totalPageCount;
+    const total = totalPageCount * cars.length;
+    let qtt = cars.length;
+    if (qtt > total) {
+      qtt = total;
     }
     return qtt;
   }
 
   render() {
-    const { sort, totalPageCount } = this.props;
+    const { cars, sort, totalPageCount } = this.props;
     const currentQuantity = this.calcCurrQtt();
 
     return (
       <div className="header">
         <article className="title">
           <div>Available cars</div>
-          <div>Showing results { currentQuantity } of { totalPageCount }</div>
+          <div>Showing { currentQuantity } of { totalPageCount * cars.length } results</div>
         </article>
         <LabelledSelect
           className="order"
