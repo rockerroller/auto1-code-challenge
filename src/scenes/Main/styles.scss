@@ -1,17 +1,21 @@
 @import 'stylesheets/base.scss';
 
-.main {
+.main-scene {
 
   display: flex;
-  padding-left: $paddingLr;
-  padding-top: $paddingLr;
+  flex: 1;
+  margin: $paddingLr;
 
   .sidebar {
-    flex: 30%;
+    @extend .default-flex-dock;
+
     width: $defaultNavWidth;
   }
 
   .content {
-    flex: 70%;
+    @extend .default-flex-dynamic;
+
+    display: flex;
+    flex-direction: column;
   }
 }

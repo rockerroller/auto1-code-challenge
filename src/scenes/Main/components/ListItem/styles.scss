@@ -4,6 +4,10 @@
   padding: $paddingMd;
   margin-bottom: $marginMd;
 
+  &:last-child {
+    margin-bottom: 0;
+  }
+
   img {
     display: inline-block;
     height: 60px;

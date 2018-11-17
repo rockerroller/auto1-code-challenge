@@ -4,8 +4,18 @@
   @extend .full-size;
 
   color: $defaultColor;
+  display: flex;
+  flex-direction: column;
 
-  main {
-    height: calc(#{$fullHeight} - (#{$toolbarHeight}*2));
+  & > header,
+  & > footer {
+    @extend .default-flex-dock;
+  }
+
+  & > main {
+    @extend .default-flex-dynamic;
+
+    display: flex;
+    flex-direction: row;
   }
 }

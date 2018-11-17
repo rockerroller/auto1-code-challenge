@@ -46,7 +46,7 @@ class ListHeader extends Component {
     const currentQuantity = this.calcCurrQtt();
 
     return (
-      <div className="header">
+      <div className="car-list-header">
         <article className="title">
           <div>Available cars</div>
           <div>Showing { currentQuantity } of { totalPageCount * cars.length } results</div>

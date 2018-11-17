@@ -21,3 +21,18 @@ $defaultNavWidth: 300px;
   border-radius: $borderRadius;
 }
 
+.default-flex-dock {
+  flex: 0 0 auto;
+}
+
+.default-flex-dynamic {
+  @extend .default-flex-content;
+
+  flex: 1 1 auto;
+}
+
+.default-flex-content {
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: stretch;
+}

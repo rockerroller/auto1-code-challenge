@@ -19,9 +19,9 @@ class List extends Component {
     const { className } = this.props;
 
     return (
-      <article className={ classNames(className, 'car-list') }>
+      <div className={ classNames(className, 'car-list') }>
         <this.cars />
-      </article>
+      </div>
     );
   }
 }

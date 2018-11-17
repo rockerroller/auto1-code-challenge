@@ -1,9 +1,11 @@
 @import 'stylesheets/base.scss';
 
-.header {
+.car-list-header {
+  @extend .default-flex-dock;
+
   display: flex;
   justify-content: space-between;
-  margin: 0 $marginLr;
+  margin-left: $marginLr;
 
   .title div {
     @extend .font-18;
