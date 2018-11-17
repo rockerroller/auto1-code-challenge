@@ -15,11 +15,11 @@ class Select extends Component {
     const options = [];
 
     if (hasEmptyOption) {
-      options.push(<option value={ emptyValue }>{ emptyLabel }</option>);
+      options.push(<option key={ -1 } value={ emptyValue }>{ emptyLabel }</option>);
     }
 
-    items.forEach((item) => options.push(
-      <option value={ item.value }>{ item.label }</option>
+    items.forEach((item, i) => options.push(
+      <option key={ i } value={ item.value }>{ item.label }</option>
     ));
 
     return options;
@@ -46,7 +46,7 @@ Select.propTypes = {
     label: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
   })).isRequired,
-  onSelectionChanged: PropTypes.function,
+  onSelectionChanged: PropTypes.func,
   value: PropTypes.string
 };
 

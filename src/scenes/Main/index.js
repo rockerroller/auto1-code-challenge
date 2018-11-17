@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import LabelledSelect from 'components/LabelledSelect';
 import Filter from './components/Filter';
 import List from './components/List';
 import ListHeader from './components/ListHeader';

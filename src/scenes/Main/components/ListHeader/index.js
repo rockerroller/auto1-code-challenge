@@ -32,7 +32,7 @@ class ListHeader extends Component {
   }
 
   calcCurrQtt = () => {
-    const { cars, page, totalPageCount } = this.props;
+    const { cars, totalPageCount } = this.props;
     const total = totalPageCount * cars.length;
     let qtt = cars.length;
     if (qtt > total) {

@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
-import Button from 'components/Button';
-import Container from 'components/Container';
 import ListItem from '../ListItem';
 import './styles.scss';
 
@@ -28,22 +25,6 @@ class List extends Component {
     );
   }
 }
-
-List.propTypes = {
-  cars: PropTypes.arrayOf(PropTypes.shape({
-    stockNumber: PropTypes.number.isRequired,
-    manufacturerName: PropTypes.string.isRequired,
-    modelName: PropTypes.string.isRequired,
-    color: PropTypes.string.isRequired,
-    mileage: PropTypes.objectOf(PropTypes.shape({
-      number: PropTypes.number.isRequired,
-      unit: PropTypes.string.isRequired
-    })).isRequired,
-    fuelType: PropTypes.string.isRequired,
-    pictureUrl: PropTypes.string.isRequired,
-  })),
-  isLoading: PropTypes.bool
-};
 
 List.defaultProps = {
   cars: [],

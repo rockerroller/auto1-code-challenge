@@ -61,8 +61,7 @@ class Filter extends Component {
   });
 
   render() {
-    const { className, onFilter } = this.props;
-    const filters = this.prepareFilters();
+    const { className } = this.props;
 
     return (
       <Container className={ classNames(className, 'cars-characteristics-filter') }>

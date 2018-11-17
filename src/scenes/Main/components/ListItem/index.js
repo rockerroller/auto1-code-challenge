@@ -27,7 +27,7 @@ class ListItem extends Component {
 
     return (
       <Container className="car-list-item">
-        <img src={ pictureUrl }/>
+        <img src={ pictureUrl } alt=""/>
         <div className="info">
           <div className="name">{ name }</div>
           <div className="stock">{ stock  }</div>
