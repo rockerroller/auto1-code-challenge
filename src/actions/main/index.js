@@ -36,6 +36,7 @@ export const setTotalPageCount = (value) => ({
   value
 });
 
+
 export function fetchCars() {
   return async (dispatch, getState) => {
     const state= getState();

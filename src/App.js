@@ -5,11 +5,31 @@ import { connect } from 'react-redux';
 import routes from 'routes';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import actions from 'actions';
 import './App.scss';
 
-const mapStateToProps = ({ app }) => ({ isLoading: app.isLoading });
+const mapStateToProps = ({ app, store }) => ({
+  isLoading: app.isLoading,
+  store
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchDefaults: () => {
+    dispatch(actions.store.fetchColors());
+    dispatch(actions.store.fetchManufacturers());
+  }
+});
 
 class App extends Component {
+
+  componentWillMount() {
+    const { store, fetchDefaults } = this.props;
+    const { colors, manufacturers } = store;
+
+    if (!colors || colors.length === 0 || !manufacturers || manufacturers.length === 0) {
+      fetchDefaults();
+    }
+  }
 
   render() {
     const { isLoading } = this.props;
@@ -35,4 +55,4 @@ class App extends Component {
   }
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
