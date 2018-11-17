@@ -40,7 +40,7 @@ export function fetchCars() {
       sort,
       page
     };
-    const cars = await get('cars', params);
+    const { cars } = await get('cars', params);
     dispatch(setCars(cars));
   }
 }

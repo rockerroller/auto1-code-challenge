@@ -8,31 +8,40 @@ import './styles.scss';
 
 class List extends Component {
 
+  cars = () => this.props.cars.map((car, i) => (
+    <ListItem key={ i } item={ car }/>
+  ));
 
   render() {
     const { className } = this.props;
-    const item = {
-      "stockNumber":10811,
-      "manufacturerName":"Tesla",
-      "modelName":"Roadster",
-      "color":"blue",
-      "mileage":{
-        "number":135993,
-        "unit":"km"
-      },
-      "fuelType":"Diesel",
-      "pictureUrl":"http://localhost:3001/car.svg"
-    };
 
     return (
       <article className={ classNames(className, 'car-list') }>
-        <ListItem item={ item }/>
+        <this.cars />
       </article>
     );
   }
 }
 
 List.propTypes = {
+  cars: PropTypes.arrayOf(PropTypes.shape({
+    stockNumber: PropTypes.number.isRequired,
+    manufacturerName: PropTypes.string.isRequired,
+    modelName: PropTypes.string.isRequired,
+    color: PropTypes.string.isRequired,
+    mileage: PropTypes.objectOf(PropTypes.shape({
+      number: PropTypes.number.isRequired,
+      unit: PropTypes.string.isRequired
+    })).isRequired,
+    fuelType: PropTypes.string.isRequired,
+    pictureUrl: PropTypes.string.isRequired,
+  })),
+  isLoading: PropTypes.bool
+};
+
+List.defaultProps = {
+  cars: [],
+  isLoading: false,
 };
 
 export default List;

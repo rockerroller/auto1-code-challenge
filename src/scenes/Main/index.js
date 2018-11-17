@@ -82,7 +82,7 @@ class Main extends Component {
   }
 
   render() {
-    const { sort } = this.props;
+    const { cars, sort } = this.props;
     const filters = this.prepareFilters();
     const sortByItems = [{
       label: 'Mileage - Ascending',
@@ -111,7 +111,7 @@ class Main extends Component {
               onSelectionChanged={ this.onOrderSelectionChanged }
               value={ sort } />
           </div>
-          <List className="list"/>
+          <List className="list" cars={ cars }/>
         </div>
       </main>
     );

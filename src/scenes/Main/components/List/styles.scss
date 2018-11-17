@@ -3,5 +3,7 @@
 .car-list {
   margin-top: $marginSm;
   margin: $marginSm $paddingLr;
+  height: $fullHeight;
+  overflow-y: auto;
   width: calc(#{$fullWidth} - (#{$paddingLr}*2 ));
 }
