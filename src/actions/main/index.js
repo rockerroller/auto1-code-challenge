@@ -59,7 +59,7 @@ export function fetchCars() {
       page
     };
     const result = await get('cars', params);
-    //dispatch(setFetchingOff());
+    dispatch(setFetchingOff());
     dispatch(setCars(result.cars));
     dispatch(setTotalPageCount(result.totalPageCount));
     if (page > result.totalPageCount) {
