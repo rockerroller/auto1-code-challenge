@@ -25,18 +25,11 @@
       margin-top: $marginSm;
     }
     a {
+      @extend .default-anchor;
       @extend .font-12;
-      @extend .ease-out-transition;
 
       margin-top: $marginSm;
-      color: $orange;
       display: block;
-      text-decoration: none;
-
-      &:hover {
-        color: $darkOrange;
-        text-decoration: underline;
-      }
     }
   }
 }

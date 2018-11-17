@@ -50,5 +50,9 @@ export function fetchCars() {
     const result = await get('cars', params);
     dispatch(setCars(result.cars));
     dispatch(setTotalPageCount(result.totalPageCount));
+    if (page > result.totalPageCount) {
+      dispatch(setPage(result.totalPageCount));
+      dispatch(fetchCars());
+    }
   }
 }

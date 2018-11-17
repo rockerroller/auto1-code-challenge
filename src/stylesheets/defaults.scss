@@ -36,3 +36,16 @@ $defaultNavWidth: 300px;
   align-items: stretch;
   align-content: stretch;
 }
+
+.default-anchor {
+  @extend .ease-out-transition;
+
+  color: $orange;
+  cursor: pointer;
+  text-decoration: none;
+
+  &:hover {
+    color: $darkOrange;
+    text-decoration: underline;
+  }
+}

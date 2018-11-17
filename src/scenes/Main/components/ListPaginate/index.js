@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import LabelledSelect from 'components/LabelledSelect';
+import Anchor from 'components/Anchor';
 import actions from 'actions';
 import './styles.scss';
 
@@ -17,21 +17,49 @@ const mapDispatchToProps = (dispatch) => ({
 
 class ListPaginate extends Component {
 
-  onPageChanged = (page) => {
+  changePage = (page) => {
     this.props.setPage(page);
     this.props.fetchCars();
   }
 
+  onFirstClicked = () => {
+    if (this.props.page > 1) {
+      this.changePage(1);
+    }
+  }
+
+  onPreviousClicked = () => {
+    let page = this.props.page;
+    page--;
+    if (page > 0) {
+      this.changePage(page);
+    }
+  }
+
+  onNextClicked = () => {
+    let page = this.props.page;
+    page++;
+    if (page <= this.props.totalPageCount) {
+      this.changePage(page);
+    }
+  }
+
+  onLastClicked = () => {
+    if (this.props.page < this.props.totalPageCount) {
+      this.changePage(this.props.totalPageCount);
+    }
+  }
+
   render() {
-    const { cars, sort, totalPageCount } = this.props;
+    const { cars, page, totalPageCount } = this.props;
 
     return (
       <div className="car-list-paginate">
-        <a>First</a>
-        <a>Previous</a>
-        <span>Page 2 of 10</span>
-        <a>Next</a>
-        <a>Last</a>
+        <Anchor onClick={ this.onFirstClicked }>First</Anchor>
+        <Anchor onClick={ this.onPreviousClicked }>Previous</Anchor>
+        <span>Page { page > totalPageCount ? totalPageCount : page } of { totalPageCount }</span>
+        <Anchor onClick={ this.onNextClicked }>Next</Anchor>
+        <Anchor onClick={ this.onLastClicked }>Last</Anchor>
       </div>
     );
   }
