@@ -6,5 +6,7 @@
   "filter": {
     "color": null,
     "manufacturer": null
-  }
+  },
+  "sort": "asc",
+  "page": 1
 }
