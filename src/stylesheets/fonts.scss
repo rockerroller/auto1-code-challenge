@@ -1,31 +1,35 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
-$fontFamily: 'Roboto' !default;
-
-.font {
-  font-family: $fontFamily;
+.font-defaults {
+  font-family: 'Roboto';
   color: $darkGray;
+}
 
-  &-32 {
-    font-size: 32px;
-    &-bold{
-      font-weight: bold;
-    }
-  }
+.font-32 {
+  @extend .font-defaults;
+  font-size: 32px;
+}
+.font-32-bold {
+  @extend .font-32;
+  font-weight: bold;
+}
 
-  &-18 {
-    font-size: 18px;
-    &-bold{
-      font-weight: bold;
-    }
-  }
+.font-18 {
+  @extend .font-defaults;
+  font-size: 18px;
+}
+.font-18-bold {
+  @extend .font-18;
+  font-weight: bold;
+}
 
-  &-14 {
-    font-size: 14px;
-  }
+.font-14 {
+  @extend .font-defaults;
+  font-size: 14px;
+}
 
-  &-12 {
-    font-size: 12px;
-  }
+.font-12 {
+  @extend .font-defaults;
+  font-size: 12px;
 }
 

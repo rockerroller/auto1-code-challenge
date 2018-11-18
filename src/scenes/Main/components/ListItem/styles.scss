@@ -59,11 +59,12 @@
       margin-top: $marginSm;
     }
     a {
-      @extend .default-anchor;
       @extend .font-12;
+      @extend .default-anchor;
 
-      margin-top: $marginSm;
+      color: $orange;
       display: block;
+      margin-top: $marginSm;
     }
   }
 }

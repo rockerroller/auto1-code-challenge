@@ -6,18 +6,18 @@ import './styles.scss';
 class Button extends Component {
 
   render() {
-    const { className, label, onClick } = this.props;
+    const { className, children, onClick } = this.props;
 
     return (
       <button className={ classNames(className,'button-default') } onClick={ onClick }>
-        { label }
+        { children }
       </button>
     );
   }
 }
 
 Button.propTypes = {
-  label: PropTypes.string.isRequired,
+  children: PropTypes.string.isRequired,
   onClick: PropTypes.func
 };
 

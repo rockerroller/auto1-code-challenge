@@ -1,5 +1,8 @@
 @import 'stylesheets/base.scss';
 
 .default-container {
-  @extend .default-border;
+
+  &.border {
+    @extend .default-border;
+  }
 }

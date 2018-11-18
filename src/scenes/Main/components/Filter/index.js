@@ -66,7 +66,9 @@ class Filter extends Component {
     return (
       <Container className={ classNames(className, 'cars-characteristics-filter') }>
         <this.filters />
-        <Button className="button" label="Filter" onClick={ this.onFilter } />
+        <Button className="button" onClick={ this.onFilter }>
+          Filter
+        </Button>
       </Container>
     );
   }

@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import Anchor from 'components/Anchor';
 import Container from 'components/Container';
+import { getLabelName, getLabelInfo } from 'utils/car';
 import './styles.scss';
 
 class ListItem extends Component {
@@ -10,21 +11,9 @@ class ListItem extends Component {
   getLabels() {
     const { item, isLoading } = this.props;
     if (!isLoading) {
-      const capitalize = (word) => word.replace(/^\w/, c => c.toUpperCase());
-      const {
-        stockNumber,
-        manufacturerName,
-        modelName,
-        color,
-        mileage,
-        fuelType,
-        pictureUrl
-      } = item;
-      const name = `${manufacturerName} ${modelName}`;
-      const stock =`Stock # ${stockNumber} - ` +
-        `${mileage.number.toLocaleString('pt-BR')} ${mileage.unit.toUpperCase()} - ` +
-        `${capitalize(fuelType)} - ` +
-        `${capitalize(color)}`;
+      const { stockNumber, pictureUrl } = item;
+      const name = getLabelName(item);
+      const stock =getLabelInfo(item);
 
       return { name, stock, stockNumber, pictureUrl };
     }
