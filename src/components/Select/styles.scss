@@ -33,17 +33,16 @@ $selectArrowSize: $selectArrowWidth $selectArrowHeight;
   background-size: $selectArrowSize;
   background-repeat: no-repeat;
   color: $defaultColor;
+  outline: 0;
   padding: $paddingSm $paddingMd;
   width: $fullWidth;
-}
 
-.select-container select:focus {
-  background-image:
+  &:active{
+    background-image:
     arrow-part($selectArrowPart1Angle, $lightGray, transparent),
     arrow-part($selectArrowPart2Angle, transparent, $lightGray);
-  background-position: $selectArrowPosition2, $selectArrowPosition1;
-  background-size: $selectArrowSize;
-  background-repeat: no-repeat;
-  border-color: $lightGray;
-  outline: 0;
+    background-position: $selectArrowPosition2, $selectArrowPosition1;
+    background-size: $selectArrowSize;
+    background-repeat: no-repeat;
+  }
 }

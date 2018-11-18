@@ -4,7 +4,6 @@ import { Router, Route, Switch } from 'react-router-dom';
 import routes from 'routes';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import actions from 'actions';
 import './App.scss';
 
 class App extends Component {
