@@ -5,6 +5,7 @@ import Button from 'components/Button';
 import Container from 'components/Container';
 import LabelledSelect from 'components/LabelledSelect';
 import actions from 'actions';
+import { capitalize } from 'utils';
 import './styles.scss';
 
 const mapStateToProps = ({ main, store }) => ({
@@ -21,8 +22,8 @@ class Filter extends Component {
 
   prepareFilters() {
     const { store } = this.props;
-    const handleColors = () => store.colors.map((name) => ({ label: name, value:name }));
-    const handleManufacturers = () => store.manufacturers.map(({ name }) => ({ label: name, value: name }));
+    const handleColors = () => store.colors.map((name) => ({ label: capitalize(name), value: name }));
+    const handleManufacturers = () => store.manufacturers.map(({ name }) => ({ label: capitalize(name), value: name }));
 
     return [
       {

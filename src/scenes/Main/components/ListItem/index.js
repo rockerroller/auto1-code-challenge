@@ -44,7 +44,7 @@ class ListItem extends Component {
 }
 
 ListItem.propTypes = {
-  onViewDetailsClick: PropTypes.func.isRequired,
+  onViewDetailsClick: PropTypes.func,
 };
 
 export default ListItem;

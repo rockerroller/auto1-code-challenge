@@ -11,38 +11,71 @@ $selectArrowPosition2: calc(#{$fullWidth} - #{$marginMd}) $halfHeight;
 
 $selectArrowSize: $selectArrowWidth $selectArrowHeight;
 
+$selectDefaultPadding: $paddingSm $paddingMd;
+
 @function arrow-part($angle, $color1, $color2) {
  @return linear-gradient($angle, $color1 50%, $color2 50%);
 }
 
-.select-container {
-  overflow: hidden;
-}
-
-.select-container select {
+.select-default {
   @extend .font-14;
+  position: relative;
 
-  appearance: none;
-  -webkit-appearance: none;
-  border: none;
-  box-shadow: none;
-  background-image:
-    arrow-part($selectArrowPart1Angle, transparent, $lightGray),
-    arrow-part($selectArrowPart2Angle, $lightGray, transparent);
-  background-position: $selectArrowPosition1, $selectArrowPosition2;
-  background-size: $selectArrowSize;
-  background-repeat: no-repeat;
-  color: $defaultColor;
-  outline: 0;
-  padding: $paddingSm $paddingMd;
-  width: $fullWidth;
+  .label {
+    padding: $paddingSm $paddingMd;
 
-  &:active{
+    border: none;
+    box-shadow: none;
     background-image:
-    arrow-part($selectArrowPart1Angle, $lightGray, transparent),
-    arrow-part($selectArrowPart2Angle, transparent, $lightGray);
+      arrow-part($selectArrowPart1Angle, transparent, $lightGray),
+      arrow-part($selectArrowPart2Angle, $lightGray, transparent);
+    background-position: $selectArrowPosition1, $selectArrowPosition2;
+    background-size: $selectArrowSize;
+    background-repeat: no-repeat;
+    color: $defaultColor;
+    cursor: pointer;
+    outline: 0;
+    overflow: hidden;
+  }
+  &.open .label {
+    background-image:
+      arrow-part($selectArrowPart1Angle, $lightGray, transparent),
+      arrow-part($selectArrowPart2Angle, transparent, $lightGray);
     background-position: $selectArrowPosition2, $selectArrowPosition1;
     background-size: $selectArrowSize;
     background-repeat: no-repeat;
+  }
+  .options {
+    @extend .default-border;
+
+    background-color: $white;
+    left: 0;
+    max-height: 300px;
+    margin: $marginMd 0 0 0;
+    overflow-y: scroll;
+    padding: 0;
+    position: absolute;
+    -webkit-overflow-scrolling: touch;
+    width: calc(#{$fullWidth} - #{$borderWidth});
+    z-index: 5000;
+
+    li {
+      @extend .font-14;
+      @extend .ease-out-transition;
+
+      cursor: pointer;
+      border-bottom: $defaultBorder;
+      padding: $paddingSm $paddingMd;
+
+      &:hover {
+        color: $white;
+        background-color: $orange;
+      }
+      &:last-child {
+        border-bottom: none;
+        border-bottom-left-radius: $borderRadius;
+        border-bottom-right-radius: $borderRadius;
+      }
+    }
   }
 }

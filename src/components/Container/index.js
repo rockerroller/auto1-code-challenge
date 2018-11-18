@@ -10,7 +10,7 @@ const Container = ({ children, className, border }) => (
 );
 
 Container.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.any.isRequired,
   border: PropTypes.bool
 };
 
