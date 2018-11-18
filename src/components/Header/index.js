@@ -25,7 +25,9 @@ class Header extends Component {
   render() {
     return (
       <header className="app-header">
-        <Logo className="logo" />
+        <Link to="/">
+          <Logo className="logo" />
+        </Link>
         <nav>
           <this.items />
         </nav>

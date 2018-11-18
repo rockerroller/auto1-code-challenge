@@ -18,6 +18,9 @@ export default function app(state = initialState, action) {
       return newState;
 
     case TOGGLE_FAVOURITE:
+      // The toggle favourite action is handling favourites in
+      // hashmap due to performance considerations when there
+      // is a huge amount of favourites
       let favourite = clone(newState.favourite);
       if (favourite[action.value]) {
         delete favourite[action.value];
