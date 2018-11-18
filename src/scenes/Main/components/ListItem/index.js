@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import Anchor from 'components/Anchor';
@@ -22,7 +23,7 @@ class ListItem extends Component {
   }
 
   render() {
-    const { isLoading } = this.props;
+    const { isLoading, item, onViewDetailsClick } = this.props;
     const { name, stock, stockNumber, pictureUrl } = this.getLabels();
 
     return (
@@ -34,12 +35,16 @@ class ListItem extends Component {
           {
             isLoading ?
             <Anchor /> :
-            <Link to={ `detail/${stockNumber}` }>View details</Link>
+            <Link to={`/detail/${stockNumber}`} onClick={ () => onViewDetailsClick(item) }>View details</Link>
           }
         </div>
       </Container>
     );
   }
 }
+
+ListItem.propTypes = {
+  onViewDetailsClick: PropTypes.func.isRequired,
+};
 
 export default ListItem;

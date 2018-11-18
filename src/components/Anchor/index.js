@@ -17,4 +17,5 @@ Anchor.propTypes = {
   href: PropTypes.string,
   onClick: PropTypes.func
 };
+
 export default Anchor;

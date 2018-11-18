@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 import ListItem from '../ListItem';
+import actions from 'actions';
 import './styles.scss';
 
 const mapStateToProps = ({ main }) => ({
@@ -9,7 +10,15 @@ const mapStateToProps = ({ main }) => ({
   cars: main.cars
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  setCar: (car) => dispatch(actions.detail.setCar(car)),
+});
+
 class List extends Component {
+
+  onViewDetailsClick = (item) => {
+    this.props.setCar(item);
+  }
 
   cars = () => {
     const { cars, isLoading } = this.props;
@@ -19,7 +28,7 @@ class List extends Component {
       ));
     }
     return cars.map((car, i) => (
-      <ListItem key={ i } item={ car }/>
+      <ListItem key={ i } item={ car } onViewDetailsClick={ this.onViewDetailsClick }/>
     ));
   }
 
@@ -38,4 +47,4 @@ List.defaultProps = {
   cars: []
 };
 
-export default connect(mapStateToProps)(List);
+export default connect(mapStateToProps, mapDispatchToProps)(List);

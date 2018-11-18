@@ -17,8 +17,10 @@ const mapDispatchToProps = (dispatch) => ({
 class Detail extends Component {
 
   componentWillMount() {
-    const { fetchCar, match } = this.props;
-    return fetchCar(match.params.id);
+    const { car, fetchCar, match } = this.props;
+    if (!car) {
+      fetchCar(match.params.id);
+    }
   }
 
   render() {
