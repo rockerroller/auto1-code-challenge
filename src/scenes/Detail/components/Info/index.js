@@ -13,15 +13,31 @@ const mapStateToProps = ({ detail, store }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  toggleFavourite: (stockNumber) => dispatch(actions.store.toggleFavourite(stockNumber)),
 });
 
 class Info extends Component {
 
+  isFavourited() {
+    const { car, favourite } = this.props;
+    if (car) {
+      return favourite[car.stockNumber];
+    }
+    return false;
+  }
+
+  onFavouriteClick = () => {
+    if (this.props.car) {
+      this.props.toggleFavourite(this.props.car.stockNumber);
+    }
+  }
+
   render() {
-    const { car, className } = this.props;
+    const { car, className, isLoading } = this.props;
+    const favourited = this.isFavourited();
 
     return (
-      <div className={ classNames(className, 'car-detail-info') }>
+      <div className={ classNames(className, 'car-detail-info', { loading: isLoading }) }>
         <Container className="info-container" border={ false }>
           <div className="name">{ getLabelName(car) }</div>
           <div className="info">{ getLabelInfo(car) }</div>
@@ -37,7 +53,9 @@ class Info extends Component {
             <div className="label">
               If you like this car, click the button and save it in your collection of favourite items.
             </div>
-            <Button className="save">Save</Button>
+            <Button className="save" onClick={ this.onFavouriteClick }>
+              { !favourited ? 'Save' : 'Saved!' }
+            </Button>
           </Container>
         </Container>
       </div>
