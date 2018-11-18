@@ -2,6 +2,7 @@
 
 .app {
   @extend .full-size;
+  @extend .font-defaults;
 
   color: $defaultColor;
   display: flex;
