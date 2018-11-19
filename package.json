@@ -19,7 +19,7 @@
   "scripts": {
     "start": "env-cmd .env react-scripts start",
     "build": "env-cmd .env react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --watchAll",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -32,6 +32,9 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "env-cmd": "^8.0.2"
+    "env-cmd": "^8.0.2",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.7.0",
+    "sinon": "^7.1.1"
   }
 }

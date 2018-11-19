@@ -6,7 +6,7 @@ import {
   TOGGLE_FAVOURITE
 } from 'actions/store';
 
-export default function app(state = initialState, action) {
+export default function store(state = initialState, action) {
   let newState = clone(state);
   switch (action.type) {
     case STORE_COLORS:

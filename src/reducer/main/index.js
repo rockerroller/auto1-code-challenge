@@ -11,7 +11,7 @@ import {
   SET_TOTAL_PAGE_COUNT
 } from 'actions/main';
 
-export default function app(state = initialState, action) {
+export default function main(state = initialState, action) {
   let newState = clone(state);
   switch (action.type) {
     case SET_FETCHING_ON:

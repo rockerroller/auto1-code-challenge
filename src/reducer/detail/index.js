@@ -6,7 +6,7 @@ import {
   SET_CAR,
 } from 'actions/detail';
 
-export default function app(state = initialState, action) {
+export default function detail(state = initialState, action) {
   let newState = clone(state);
   switch (action.type) {
     case SET_FETCHING_ON:

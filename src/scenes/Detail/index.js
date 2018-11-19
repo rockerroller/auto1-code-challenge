@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch) => ({
   fetchCar: (stockNumber) => dispatch(actions.detail.fetchCar(stockNumber)),
 });
 
-class Detail extends Component {
+export class Detail extends Component {
 
   componentWillMount() {
     const { car, fetchCar, match } = this.props;

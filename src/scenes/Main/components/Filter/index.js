@@ -9,7 +9,8 @@ import { capitalize } from 'utils';
 import './styles.scss';
 
 const mapStateToProps = ({ main, store }) => ({
-  store
+  colors: store.colors,
+  manufacturers: store.manufacturers
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -18,12 +19,12 @@ const mapDispatchToProps = (dispatch) => ({
   fetchCars: () => dispatch(actions.main.fetchCars())
 });
 
-class Filter extends Component {
+export class Filter extends Component {
 
   prepareFilters() {
-    const { store } = this.props;
-    const handleColors = () => store.colors.map((name) => ({ label: capitalize(name), value: name }));
-    const handleManufacturers = () => store.manufacturers.map(({ name }) => ({ label: capitalize(name), value: name }));
+    const { colors, manufacturers } = this.props;
+    const handleColors = () => colors.map((name) => ({ label: capitalize(name), value: name }));
+    const handleManufacturers = () => manufacturers.map(({ name }) => ({ label: capitalize(name), value: name }));
 
     return [
       {
@@ -66,7 +67,7 @@ class Filter extends Component {
 
     return (
       <Container className={ classNames(className, 'cars-characteristics-filter') }>
-        <this.filters />
+        { this.filters() }
         <Button className="button" onClick={ this.onFilter }>
           Filter
         </Button>
