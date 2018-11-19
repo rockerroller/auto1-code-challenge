@@ -1,5 +1,10 @@
 @import 'stylesheets/base.scss';;
 
+@font-face {
+  font-family: 'Roboto';
+  src: url('stylesheets/fonts/Roboto-Regular.ttf') format('truetype');
+}
+
 html,
 body,
 body div#root {
