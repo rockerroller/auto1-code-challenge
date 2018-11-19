@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './index.scss';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
@@ -7,7 +8,6 @@ import { PersistGate } from 'redux-persist/integration/react';
 import storage from 'redux-persist/lib/storage';
 import thunkMiddleware from 'redux-thunk';
 import rootReducer from 'reducer';
-import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
