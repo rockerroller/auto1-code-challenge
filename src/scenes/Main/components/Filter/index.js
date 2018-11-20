@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 import Button from 'components/Button';
@@ -8,7 +8,7 @@ import actions from 'actions';
 import { capitalize } from 'utils';
 import './styles.scss';
 
-const mapStateToProps = ({ main, store }) => ({
+const mapStateToProps = ({ store }) => ({
   colors: store.colors,
   manufacturers: store.manufacturers
 });
@@ -21,53 +21,42 @@ const mapDispatchToProps = (dispatch) => ({
 
 export class Filter extends Component {
 
-  prepareFilters() {
-    const { colors, manufacturers } = this.props;
-    const handleColors = () => colors.map((name) => ({ label: capitalize(name), value: name }));
-    const handleManufacturers = () => manufacturers.map(({ name }) => ({ label: capitalize(name), value: name }));
-
-    return [
-      {
-        label: 'Color',
-        emptyLabel: 'All car colors',
-        items: handleColors(),
-        onSelectionChanged: this.onColorSelectionChanged
-      }, {
-        label: 'Manufacturer',
-        emptyLabel: 'All manufacturers',
-        items: handleManufacturers(),
-        onSelectionChanged: this.onManufacturerSelectionChanged
-      }
-    ]
-  }
-
   onFilter = () => this.props.fetchCars();
 
   onColorSelectionChanged = (color) => this.props.setFilterColor(color);
 
   onManufacturerSelectionChanged = (manufacturer) =>  this.props.setFilterManufacturer(manufacturer);
 
-  filters = () => this.prepareFilters().map((filter, i) => {
+  filters = () => {
 
-    const { label, emptyLabel, items, onSelectionChanged, value } = filter;
+    const { colors, manufacturers } = this.props;
+    const colorItems = colors.map((name) => ({ label: capitalize(name), value: name }));
+    const manufacturerItems = manufacturers.map(({ name }) => ({ label: capitalize(name), value: name }));
+
+    colorItems.splice(0, 0, { label: 'All car colors', value: '' });
+    manufacturerItems.splice(0, 0, { label: 'All manufacturers', value: '' });
 
     return (
-      <LabelledSelect
-        key={ i }
-        emptyLabel={ emptyLabel  }
-        label={ label }
-        items={ items }
-        onSelectionChanged={ onSelectionChanged }
-        value={ value }/>
-    )
-  });
+      <Fragment>
+        <LabelledSelect
+          label="Color"
+          items={ colorItems }
+          onSelectionChanged={ this.onColorSelectionChanged } />
+        <LabelledSelect
+          label="Manufacturer"
+          items={ manufacturerItems }
+          onSelectionChanged={ this.onManufacturerSelectionChanged } />
+      </Fragment>
+    );
+
+  };
 
   render() {
     const { className } = this.props;
 
     return (
       <Container className={ classNames(className, 'cars-characteristics-filter') }>
-        { this.filters() }
+        <this.filters />
         <Button className="button" onClick={ this.onFilter }>
           Filter
         </Button>

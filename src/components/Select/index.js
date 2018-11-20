@@ -26,15 +26,9 @@ class Select extends Component{
     this.setState((prevState) => ({ listOpen: !prevState.listOpen }));
   }
 
-  componentWillMount() {
 
-    const { emptyLabel, emptyValue, hasEmptyOption, items } = this.props;
-
-    if (hasEmptyOption) {
-      items.splice(0, 0, { label: emptyLabel, value: emptyValue });
-    }
-
-    this.setState({ items, selected: items[0] });
+  static getDerivedStateFromProps(props, state) {
+    return { ...state, items: props.items, selected: state.selected || props.items[0] };
   }
 
   items = () => {
@@ -70,9 +64,6 @@ class Select extends Component{
 }
 
 Select.propTypes = {
-  emptyLabel: PropTypes.string,
-  emptyValue: PropTypes.string,
-  hasEmptyOption: PropTypes.bool,
   items: PropTypes.arrayOf(PropTypes.shape({
     label: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
@@ -82,9 +73,6 @@ Select.propTypes = {
 };
 
 Select.defaultProps = {
-  emptyLabel: 'Empty',
-  emptyValue: '',
-  hasEmptyOption: true,
   items: [],
   value: ''
 };

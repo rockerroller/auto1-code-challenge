@@ -19,6 +19,9 @@ const mapDispatchToProps = (dispatch) => ({
 class ListHeader extends Component {
 
   sortByItems = [{
+    label: 'None',
+    value: ''
+  }, {
     label: 'Mileage - Ascending',
     value: 'asc'
   }, {

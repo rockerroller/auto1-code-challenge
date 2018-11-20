@@ -10,14 +10,12 @@ const LabelledSelect = ({ className, emptyLabel, label, items, onSelectionChange
     <Select
       className="select"
       items={ items }
-      emptyLabel={ emptyLabel }
       onSelectionChanged={ onSelectionChanged }
       value={ value }/>
   </div>
 );
 
 LabelledSelect.propTypes = {
-  emptyLabel: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   items: PropTypes.arrayOf(PropTypes.shape({
     label: PropTypes.string.isRequired,

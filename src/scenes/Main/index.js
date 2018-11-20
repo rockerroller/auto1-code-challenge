@@ -8,17 +8,16 @@ import actions from 'actions';
 import './styles.scss';
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchDefaults: () => {
-    dispatch(actions.store.fetchColors());
-    dispatch(actions.store.fetchManufacturers());
-  },
+  fetchColors: () => dispatch(actions.store.fetchColors()),
+  fetchManufacturers: () => dispatch(actions.store.fetchManufacturers()),
   fetchCars: () => dispatch(actions.main.fetchCars()),
 });
 
 class Main extends Component {
 
   componentWillMount() {
-    this.props.fetchDefaults();
+    this.props.fetchColors();
+    this.props.fetchManufacturers();
     this.props.fetchCars();
   }
 

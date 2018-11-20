@@ -10,12 +10,10 @@ export default function store(state = initialState, action) {
   let newState = clone(state);
   switch (action.type) {
     case STORE_COLORS:
-      newState.colors = action.value;
-      return newState;
+      return { ...state, colors: action.value };
 
     case STORE_MANUFACTURERS:
-      newState.manufacturers = action.value;
-      return newState;
+      return { ...state, manufacturers: action.value };
 
     case TOGGLE_FAVOURITE:
       // The toggle favourite action is handling favourites in
@@ -27,8 +25,7 @@ export default function store(state = initialState, action) {
       } else {
         favourite[action.value] = true;
       }
-      newState.favourite = favourite;
-      return newState;
+      return { ...state, favourite };
 
     default: return state;
   }

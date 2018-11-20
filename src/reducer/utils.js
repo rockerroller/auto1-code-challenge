@@ -1,1 +1,1 @@
-export const clone = (state, newState) => Object.assign({}, state);
+export const clone = (state) => Object.assign({}, state);
