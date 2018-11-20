@@ -28,7 +28,15 @@ class Select extends Component{
 
 
   static getDerivedStateFromProps(props, state) {
-    return { ...state, items: props.items, selected: state.selected || props.items[0] };
+    let selected = state.selected;
+    if (!selected) {
+      if (props.value) {
+        selected = props.items.filter((item) => item.value === props.value);
+        selected = (selected && selected.length > 0) && selected[0]
+      }
+      selected = selected || props.items[0]
+    }
+    return { ...state, items: props.items, selected };
   }
 
   items = () => {

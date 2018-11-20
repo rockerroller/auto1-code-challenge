@@ -18,8 +18,9 @@ export class Detail extends Component {
 
   componentWillMount() {
     const { car, fetchCar, match } = this.props;
-    if (!car || (car && car.stockNumber !== match.params.id)) {
-      fetchCar(match.params.id);
+    const stockNumber = parseInt(match.params.id);
+    if (!car || (car && car.stockNumber !== stockNumber)) {
+      fetchCar(stockNumber);
     }
   }
 

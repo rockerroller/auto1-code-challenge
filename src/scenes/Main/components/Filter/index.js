@@ -8,7 +8,8 @@ import actions from 'actions';
 import { capitalize } from 'utils';
 import './styles.scss';
 
-const mapStateToProps = ({ store }) => ({
+const mapStateToProps = ({ main, store }) => ({
+  filter: main.filter,
   colors: store.colors,
   manufacturers: store.manufacturers
 });
@@ -16,7 +17,9 @@ const mapStateToProps = ({ store }) => ({
 const mapDispatchToProps = (dispatch) => ({
   setFilterColor: (color) => dispatch(actions.main.setFilterColor(color)),
   setFilterManufacturer: (manufacturer) => dispatch(actions.main.setFilterManufacturer(manufacturer)),
-  fetchCars: () => dispatch(actions.main.fetchCars())
+  fetchCars: () => dispatch(actions.main.fetchCars()),
+  fetchColors: () => dispatch(actions.store.fetchColors()),
+  fetchManufacturers: () => dispatch(actions.store.fetchManufacturers())
 });
 
 export class Filter extends Component {
@@ -29,7 +32,7 @@ export class Filter extends Component {
 
   filters = () => {
 
-    const { colors, manufacturers } = this.props;
+    const { colors, manufacturers, filter } = this.props;
     const colorItems = colors.map((name) => ({ label: capitalize(name), value: name }));
     const manufacturerItems = manufacturers.map(({ name }) => ({ label: capitalize(name), value: name }));
 
@@ -41,22 +44,33 @@ export class Filter extends Component {
         <LabelledSelect
           label="Color"
           items={ colorItems }
-          onSelectionChanged={ this.onColorSelectionChanged } />
+          onSelectionChanged={ this.onColorSelectionChanged }
+          value={ filter.color }/>
         <LabelledSelect
           label="Manufacturer"
           items={ manufacturerItems }
-          onSelectionChanged={ this.onManufacturerSelectionChanged } />
+          onSelectionChanged={ this.onManufacturerSelectionChanged }
+          value={ filter.manufacturer }/>
       </Fragment>
     );
-
   };
+
+  componentWillMount() {
+    const { colors, fetchColors, manufacturers, fetchManufacturers } = this.props;
+    if (!colors || colors.length === 0) {
+      fetchColors();
+    }
+    if (!manufacturers || manufacturers.length === 0) {
+      fetchManufacturers();
+    }
+  }
 
   render() {
     const { className } = this.props;
 
     return (
       <Container className={ classNames(className, 'cars-characteristics-filter') }>
-        <this.filters />
+        { this.filters() }
         <Button className="button" onClick={ this.onFilter }>
           Filter
         </Button>
