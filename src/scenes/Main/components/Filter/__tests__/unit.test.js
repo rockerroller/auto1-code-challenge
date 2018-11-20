@@ -7,6 +7,10 @@ Enzyme.configure({ adapter: new Adapter() });
 
 function getComponent() {
   const props = {
+    filter: {
+      color: 'red',
+      manufacturer: 'BMW'
+    },
     colors: ['red', 'blue', 'green'],
     manufacturers: [{ name: 'Audi' }, { name: 'BMW' }]
   };
