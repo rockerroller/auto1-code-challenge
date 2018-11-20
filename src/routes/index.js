@@ -1,6 +1,7 @@
-import Main from 'scenes/Main';
-import Detail from 'scenes/Detail';
-import NotFound from 'scenes/NotFound';
+import { lazy } from 'react';
+const Main = lazy(() => import('scenes/Main'));
+const Detail = lazy(() => import('scenes/Detail'));
+const NotFound = lazy(() => import('scenes/NotFound'));
 
 const routes = [{
   exact: true,

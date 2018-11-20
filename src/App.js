@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
@@ -37,9 +37,11 @@ class App extends Component {
             <div className="app">
               <Header />
               <main>
-                <Switch>
-                  { this.routes() }
-                </Switch>
+                <Suspense fallback={<div>Loading an awesome code-challenge! Please wait.</div>}>
+                  <Switch>
+                    { this.routes() }
+                  </Switch>
+                </Suspense>
               </main>
               <Footer/>
             </div>
