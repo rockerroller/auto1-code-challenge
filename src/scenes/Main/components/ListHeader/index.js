@@ -44,10 +44,16 @@ class ListHeader extends Component {
     return qtt;
   }
 
+  calcTotalQtt = () => {
+    const carsPerPageDefault = 10;
+    const { cars, totalPageCount } = this.props;
+    return ( totalPageCount * carsPerPageDefault ) - (carsPerPageDefault - cars.length);
+  }
+
   render() {
-    const { sort, totalPageCount } = this.props;
+    const { sort } = this.props;
     const currentQuantity = this.calcCurrQtt();
-    const totalPages = totalPageCount === 1 ? currentQuantity : totalPageCount * 10;
+    const totalPages = this.calcTotalQtt();
 
     return (
       <div className="car-list-header">
