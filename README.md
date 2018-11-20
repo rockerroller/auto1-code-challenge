@@ -201,7 +201,11 @@ qttCarsLastPage = req.get('/cars?page=' + totalPageCount).cars.length; // the ex
 
 This application does not implement this approach because this implies a lack of performance. It's a backend issue and have to be solved there, not workarounded by the frontend.
 
-In this implementation, only in the last page you will be able to see the correct value.
+In this implementation, only in the last page you will be able to see the correct value. The following equation is being used:
+
+```javascript
+(totalPageCount * qttCars) - (qttCars - qttCarsCurrentShowing);
+```
 
 ### Responsiveness
 
