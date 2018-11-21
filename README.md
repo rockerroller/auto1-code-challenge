@@ -35,7 +35,7 @@ Essentially we have 2 main directories that contains our components. The _compon
 
 All the components contained in the _components_ folder are global components (identity base).
 
-All the components contained in the _scenes_ folder are you main views, the ones who will be rendered by the routes of the `react-router`.
+All the components contained in the _scenes_ folder are the main views, the ones who will be rendered by the routes of the `react-router`.
 
 If a component is used twice or more times, it should be a global component, but if a component is used only once, it should be contained in its scope, for example:
 
@@ -86,7 +86,7 @@ src/reducer/store/__tests__/unit.test.js
 src/scenes/Detail/__tests__/snapshot.test.js
 src/scenes/Main/components/Filter/__tests__/unit.test.js
 ```
-Tests are essential to applications reliability and consistence, and for that reason we use to spend a lot of time designing and implementing them. In this application, only few simple tests were written just to prove the concepts.
+Testing is essential for application reliability and consistence, and for that reason we use to spend a lot of time designing and implementing them. In this application, only few simple tests were written just to prove the concepts.
 
 `jest` and `enzyme` were used for the test suite with the default assertion lib.
 
@@ -102,7 +102,7 @@ yarn
 yarn build
 ```
 
-You will have a production build into the `build` directory under your application root.
+You will have a production build into the `build` directory under the application root.
 
 > PS1: The build process takes in consideration the .env file and all its keys and values.
 
@@ -146,29 +146,31 @@ You can access the app at _http://localhost:3002_.
 
 There are lots of improvements that can be made in the project at all, and I will list some of them right below:
 
-* **Default sass variables/functions/mixins** - In this project I am using `sass` as the css preprocessor. In the chosen architecture, each component has it own scss file, which is awesome considering that the context should be isolated. The point here is that I think the defaults of the sass could be better organized and distributed across the components.
+* **Default sass variables/functions/mixins** - In this project I am using `sass` as the css preprocessor. In the chosen architecture, each component has its own scss file, which is awesome considering that the context should be isolated. The point here is that I think the defaults of the sass could be better organized and distributed across the components.
 
-* **Storybook** - As the application grows, the complexity also grows. Considering this, is absotelly necessary to have a storybook to create an inventory the components and its states, but not only for this but also to code reviews and docs as we can see in this excellent [use case](https://medium.com/redmart-engineering/how-we-use-storybook-for-documentation-and-code-reviews-550a522543f1) described by [Shesh Babu](https://twitter.com/sheshbabu)
+* **Storybook** - As the application grows, its complexity also increases. Considering this, a good option is to have a storybook to create an inventory of the components and their states, as well as to code revisions and documentation.
+
+* **Test Coverage** - Tests are essential for reliability and consistency, so increase the test coverage is not a option but an obligation.
+
+* **Local storage** - The `/colors` and `/manufacturers` responses are being stored in the local storage without an expiration key. As the local storage do not have a native feature to expire the contained data (as Cookies), it is certainly needed for recycling the data.
+
+* **PWA - Service worker** - There is already a `service worker` responsible for caching the application assets (chunks, styles, images, etc) in this application. A next step would be caching some external information that make sense to be cached.
 
 ## General Observations:
 
-### Local storage
-
-The `/colors` and `/manufacturers` responses are bein stored in the local storage without an expiration key. As the local storage do not have a feature to expire the contained data (differs from Cookies), it is certainly needed for recycling the data.
-
 ### Unexpected WARNING
 
-When the application is started in dev mode, or the tests are run, an unexpected blows.
+When the application is started in dev mode, or the tests are run, an unexpected WARNING blows.
 
     Warning: Failed prop type: Invalid prop `component` of type `object` supplied to `Route`, expected `function`.
           in Route (at App.js:29)
           in App (at app.unit.test.js:7)
 
-This is because the component _prop-type_ of the `Route` component of the `react-router` lib expect a function (which should be a React Component), but an object is given.
+This happes because the **component** prop-type of the `Route` component of the `react-router` lib expect a function (which should be a React Component), but an object is given instead.
 
-An object is given beacause the scenes are being lazy loaded, once they need to load only when requested.
+An object is given because the _scenes_ are being lazy loaded, once they need to load only when requested.
 
-It's weird because the official article of React about [Code Splitting](https://reactjs.org/docs/code-splitting.html) tells do do exactly the same thing that is being done in this project. That may be a version issue of the router lib. Dive deeper in this problem is needed to solve this warning.
+It's weird because the official article of React about [Code Splitting](https://reactjs.org/docs/code-splitting.html) tells to do exactly the same thing that is being done in this project. That may be a version issue of the router lib. Dive deeper in this problem is needed to solve this warning.
 
 ### Mock-Server - CORS
 
@@ -182,13 +184,6 @@ And in the `src/index.js` right below `port` constant:
 app.use(require('cors')());
 ```
 
-### PWA - Service worker 
-
-There is a `service worker` responsible for caching the application assets (chunks, styles, images, etc) in this application.
-
-Once you serve the production build the assets will be cached by the `service worker`. So, after the first serving, your application will be available even when the server is down, but you will still need the backend working (mock-server) for a proper behaviour. [Referenced in the Production Build Section](#production-build).
-
-
 ### Cars by Page information - Misunderstanding
 
 In the header of the list (`ListHeader` component in this solution) there is the following information:
@@ -197,9 +192,9 @@ _Showing_ `curr_showing_cars` _of_ `total_cars` _results_
 
 Where `curr_showing_cars` is the total of cars currently showing in the list, and the `total_cars` are the total considering all the filters.
 
-The point here is that is not possible to calculate the      `total_cars` with the information that **Mock-Server** retrieves(`{ cars: [...], totalPageCount }`). We will have to consider that any page except the last have 10 cars, and will be always needed to make an extra request to the last page of a specific filter and count the size of the `cars` property. 
+The point here is that is not possible to calculate the `total_cars` with the information that **Mock-Server** retrieves(`{ cars: [...], totalPageCount }`). We will have to consider that any page except the last have 10 cars, and will always need to make an extra request to the last page of a specific filter and count the size of the `cars` property. 
 
-For example  _(pseudocode)_:
+The below piece of _pseudocode_ shows how would be the calc:
 ```javascript
 ((totalPageCount - 1) * qttCars) + (qttCarsLastPage);
 ```
@@ -209,7 +204,7 @@ qttCars = 10; // by default
 qttCarsLastPage = req.get('/cars?page=' + totalPageCount).cars.length; // the extra request always to the last page
 ```
 
-This application does not implement this approach because this implies a lack of performance. It's a backend issue and have to be solved there, not workarounded by the frontend.
+This application does not implement this approach because it implies a lack of performance. It's a backend issue and have to be solved there, not workarounded by the frontend.
 
 In this implementation, only in the last page you will be able to see the correct value. The following equation is being used:
 
