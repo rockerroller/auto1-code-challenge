@@ -1,0 +1,48 @@
+@import 'stylesheets/base.scss';
+
+.car-detail-info {
+
+  display: flex;
+  flex-direction: row;
+  margin-top: $marginLr;
+
+  .info-container {
+    @extend .default-flex-dynamic;
+
+    margin-right: $marginLr;
+
+    .name {
+      @extend .font-32-bold;
+    }
+    .info{
+      @extend .font-18-bold;
+      margin-top: $marginLr;
+    }
+    .notice{
+      @extend .font-14;
+      line-height: $marginLr;
+      margin-top: $marginLr;
+      word-spacing: $marginSm;
+    }
+  }
+
+  .favourite-container {
+    @extend .default-flex-dock;
+
+    width: 290px;
+
+    .favourite {
+      padding: $paddingLr;
+
+      .label {
+        @extend .font-14;
+      }
+
+      .save {
+        display: block;
+        margin-left: auto;
+        margin-right: 0;
+      }
+    }
+  }
+}

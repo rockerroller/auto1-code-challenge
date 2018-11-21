@@ -1,0 +1,22 @@
+@import './stylesheets/base.scss';
+
+.app {
+  @extend .full-size;
+  @extend .font-defaults;
+
+  color: $defaultColor;
+  display: flex;
+  flex-direction: column;
+
+  & > header,
+  & > footer {
+    @extend .default-flex-dock;
+  }
+
+  & > main {
+    @extend .default-flex-dynamic;
+
+    display: flex;
+    flex-direction: row;
+  }
+}

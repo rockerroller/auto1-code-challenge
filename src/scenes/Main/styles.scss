@@ -1,0 +1,21 @@
+@import 'stylesheets/base.scss';
+
+.main-scene {
+
+  display: flex;
+  flex: 1;
+  margin: $paddingLr;
+
+  .sidebar {
+    @extend .default-flex-dock;
+
+    width: $defaultNavWidth;
+  }
+
+  .content {
+    @extend .default-flex-dynamic;
+
+    display: flex;
+    flex-direction: column;
+  }
+}

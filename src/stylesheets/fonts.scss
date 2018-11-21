@@ -1,0 +1,33 @@
+.font-defaults {
+  font-family: 'Roboto';
+  color: $darkGray;
+}
+
+.font-32 {
+  @extend .font-defaults;
+  font-size: 32px;
+}
+.font-32-bold {
+  @extend .font-32;
+  font-weight: bold;
+}
+
+.font-18 {
+  @extend .font-defaults;
+  font-size: 18px;
+}
+.font-18-bold {
+  @extend .font-18;
+  font-weight: bold;
+}
+
+.font-14 {
+  @extend .font-defaults;
+  font-size: 14px;
+}
+
+.font-12 {
+  @extend .font-defaults;
+  font-size: 12px;
+}
+

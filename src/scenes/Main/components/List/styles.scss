@@ -1,0 +1,9 @@
+@import 'stylesheets/base.scss';
+
+.car-list {
+  @extend .default-flex-dynamic;
+
+  margin-left: $marginLr;
+  margin-top: $marginMd;
+  overflow-y: auto;
+}

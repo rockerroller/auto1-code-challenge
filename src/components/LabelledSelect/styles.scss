@@ -1,0 +1,12 @@
+@import 'stylesheets/base.scss';
+
+.labelled-select-default label {
+  @extend .font-12;
+
+  display: block;
+  padding-bottom: $paddingSm;
+}
+
+.labelled-select-default .select {
+  margin-bottom: $marginMd;
+}

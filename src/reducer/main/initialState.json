@@ -1,0 +1,11 @@
+{
+  "isFetching": false,
+  "filter": {
+    "color": null,
+    "manufacturer": null
+  },
+  "sort": null,
+  "page": 1,
+  "cars": [],
+  "totalPageCount": 0
+}

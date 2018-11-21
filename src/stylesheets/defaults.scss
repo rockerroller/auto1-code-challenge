@@ -1,0 +1,51 @@
+@import './colors.scss';
+@import './dimensions.scss';
+
+$defaultBorder: $borderWidth solid $lightGray;
+$defaultColor: $darkGray;
+$defaultNavWidth: 300px;
+
+.full-size {
+  height: $fullHeight;
+  width: $fullWidth;
+}
+
+.toolbar {
+  clear: both;
+  height: $toolbarHeight;
+  width: $toolbarWidth;
+}
+
+.default-border {
+  border: $defaultBorder;
+  border-radius: $borderRadius;
+}
+
+.default-flex-dock {
+  flex: 0 0 auto;
+}
+
+.default-flex-dynamic {
+  @extend .default-flex-content;
+
+  flex: 1 1 auto;
+}
+
+.default-flex-content {
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: stretch;
+}
+
+.default-anchor {
+  @extend .ease-out-transition;
+
+  color: $orange;
+  cursor: pointer;
+  text-decoration: none;
+
+  &:hover {
+    color: $darkOrange;
+    text-decoration: underline;
+  }
+}

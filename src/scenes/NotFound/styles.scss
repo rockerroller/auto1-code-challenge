@@ -1,0 +1,29 @@
+@import 'stylesheets/base.scss';
+
+.not-found {
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+  width: $fullWidth;
+
+  h1 {
+    @extend .font-32-bold;
+
+    margin: 0;
+    padding-bottom: $paddingMd;
+    padding-top: $paddingLr;
+  }
+
+  div {
+    @extend .font-18;
+
+    padding-bottom: $paddingMd;
+    padding-top: $paddingMd;
+
+    a {
+      color: $orange;
+      text-decoration: none;
+    }
+  }
+}

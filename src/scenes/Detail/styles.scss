@@ -1,0 +1,38 @@
+@import 'stylesheets/base.scss';
+
+$imageHeight: 260px;
+$contentWrapperWidth: 800px;
+
+.detail-scene {
+
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  overflow-y: auto;
+
+  .picture {
+    @extend .default-flex-dock;
+
+    height: $imageHeight;
+    text-align: center;
+
+    img {
+      height: $imageHeight;
+    }
+
+    &.loading {
+      background-color: $lightGray;
+    }
+  }
+
+  .content-wrapper {
+    @extend .default-flex-dynamic;
+
+    display: flex;
+    justify-content: center;
+
+    .wrapper {
+      width: $contentWrapperWidth;
+    }
+  }
+}

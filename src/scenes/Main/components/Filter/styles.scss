@@ -1,0 +1,14 @@
+@import 'stylesheets/base.scss';
+
+.cars-characteristics-filter {
+  display: inline-block;
+  padding: $paddingLr;
+  width: calc(#{$fullWidth} - (#{$paddingLr}*2 ));
+}
+
+.cars-characteristics-filter .button{
+  display: block;
+  margin-top: $marginLr;
+  margin-left: auto;
+  margin-right: 0;
+}

@@ -1,0 +1,6 @@
+@import 'stylesheets/base.scss';
+
+a.anchor-default {
+  @extend .default-anchor;
+}
+

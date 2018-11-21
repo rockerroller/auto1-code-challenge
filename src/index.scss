@@ -1,0 +1,17 @@
+@import 'stylesheets/base.scss';;
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('stylesheets/fonts/Roboto-Regular.ttf') format('truetype');
+}
+
+html,
+body,
+body div#root {
+  @extend .font-defaults;
+  @extend .full-size;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

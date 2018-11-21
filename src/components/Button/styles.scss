@@ -1,0 +1,23 @@
+@import 'stylesheets/base.scss';
+
+$buttonDefaultHeight: 32px;
+$buttonDefaultWidth: 128px;
+
+.button-default {
+  @extend .default-border;
+  @extend .ease-out-transition;
+  @extend .font-14;
+
+  background-color: $orange;
+  border-width: 0;
+  box-shadow: none;
+  color: $white;
+  cursor: pointer;
+  height: $buttonDefaultHeight;
+  width: $buttonDefaultWidth;
+  outline: 0;
+}
+
+.button-default:active {
+  background-color: $darkOrange;
+}

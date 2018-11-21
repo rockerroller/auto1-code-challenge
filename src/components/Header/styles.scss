@@ -1,0 +1,27 @@
+@import 'stylesheets/base.scss';
+
+.app-header {
+  @extend .toolbar;
+  @extend .font-14;
+
+  border-bottom: $defaultBorder;
+  flex: 0 0 auto;
+
+  .logo {
+    margin-top: $marginLr;
+    margin-left: $marginLr;
+  }
+
+  nav {
+    display: inline-block;
+    float: right;
+    margin-right: $marginMd;
+
+    a {
+      color: $darkGray;
+      line-height: $toolbarHeight;
+      margin: 0 $marginMd 0 $marginMd;
+      text-decoration: none;
+    }
+  }
+}

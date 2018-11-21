@@ -1,0 +1,15 @@
+@import 'stylesheets/base.scss';
+
+.car-list-paginate {
+  @extend .default-flex-dock;
+  @extend .font-12;
+
+  display: flex;
+  justify-content: center;
+  margin-top: $marginLr;
+  margin-left: $marginLr;
+
+  span, a {
+    margin: 0 $marginMd;
+  }
+}

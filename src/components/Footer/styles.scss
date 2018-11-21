@@ -1,0 +1,11 @@
+
+@import 'stylesheets/base.scss';
+
+.app-footer {
+  @extend .toolbar;
+  @extend .font-12;
+
+  border-top: $defaultBorder;
+  line-height: $toolbarHeight;
+  text-align: center;
+}
